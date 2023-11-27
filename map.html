@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <base target="_top">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Map NaturDanmark</title>
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <title>NaturDanmark</title>
+    <link rel="shortcut icon" type="image/x-icon" href="fotos/logo.png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
-    <!-- https://cdnjs.com/libraries/axios -->
-    <script src="https://unpkg.com/vue@next"></script>
-    
 </head>
 <body>
-    <div id="map" style="width: 100%; height: 100%;"></div>
-    
-    <div id="app" style="height: 10%;">
-        <button id="zoomin" class="buttonbottom" v-on:click="zoomCurrentLocation">Observationer</button>
-        <button class="buttonbottom">Min Profil</button>
-        <button class="buttonbottom"  >Ny Observation</button>
+    <div id="app">
         
-    </div>  
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+        
+        <div id="buttons-container">
+            <button id="zoomin" class="btn btn-success rounded-pill" v-on:click="zoomCurrentLocation">{{ buttonText }}</button> <!-- Zoomer ind og saa skriver tilbage -->
+            <button class="btn btn-success rounded-pill">Min Profil</button>
+            <a href=observation/observation.html class="btn btn-success rounded-pill">Ny Observation</a>
+        </div>
+    </div>
     
-      
-    <script src="map.js"></script>
 </body>
-
+<script src="map.js"></script>
 </html>
