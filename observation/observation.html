@@ -17,11 +17,11 @@
     <style></style>
 </body>
 </html>
-    <style>
-        #map {
-            height: 400px;
-        }
-    </style>
+<style>
+    #map {
+        height: 400px;
+    }
+</style>
 </head>
 <body>
     <div id="app" class="container mt-5">
@@ -36,11 +36,16 @@
                 <label for="location">Lokation:</label>  
                 
                 <div class="form-check">
-                    <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getLocation">Find min lokation</button> <!-- Fra pi info -->
-                    <h6>Eller vælg fra kortet</h6>
-                <div id="map-container">
-                    <div id="small-map"></div> <!-- Add the map container -->
-                </div>
+                    <div id="map-container">
+                        <div id="small-map"></div> <!-- Add the map container -->
+                        <div id="latitude">{{latitude}}</div> <!-- Latitude readout -->
+                        <div id="longitude">{{longitude}}</div> <!-- Longitude readout -->
+                        <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getLocation">Find min lokation</button> <!-- Fra pi info -->
+                        <button type="button" class="btn btn-primary" id="locationToggleMap" @click="getPinLocation">Bekræft lokation på map</button> 
+
+                    </div>
+
+                
             </div>
             
             <div class="form-group">

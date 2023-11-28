@@ -79,13 +79,22 @@ const app = Vue.createApp({
           
           map.on('move', function(e) {
             pin.setLatLng(map.getCenter());
-            map._renderer._update();
-            this.longitude = map.getCenter().lng;
-            this.latitude = map.getCenter().lat;
+           // map._renderer._update();
+           
           });
+            this.map = map;
 
 
 
+        },
+
+        getPinLocation() {
+            
+            this.longitude = this.map.getCenter().lng;
+            this.latitude = this.map.getCenter().lat;
+            console.log(this.longitude);
+            console.log(this.latitude);
+           
         }
 
     
