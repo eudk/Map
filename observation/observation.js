@@ -41,6 +41,17 @@ const app = Vue.createApp({
             }
         },
 
+        validateFile(event){
+            const MB = 1024*1024;
+            const maximumFileSize = MB*4;
+            var uploadField = document.getElementById("photo");
+
+            if(uploadField.files[0].size > 1){
+                alert("File is too big!");
+                uploadField.value = "";
+            };
+        },
+        
         submitForm() {
             alert('Observation oprettet!');
             window.location.href = '../map.html';
