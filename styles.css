@@ -18,6 +18,10 @@ html, body {
     height: 100%;
 }
 
+#small-map {
+    height: 400px;
+}
+
 #buttons-container {
     display: flex;
     justify-content: center;
