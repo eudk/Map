@@ -3,8 +3,8 @@ const app = Vue.createApp({
         return {
             buttonText: 'Indsend',
             map: null,
-            longitude : 1,
-            latitude : 2
+            longitude : null,
+            latitude : null
 
         };
     },
