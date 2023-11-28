@@ -33,14 +33,16 @@
             </div>
             
             <div class="form-group">
-                <label for="location">Lokation:</label>
+                <label for="location">Lokation:</label>  
                 
                 <div class="form-check">
-                <button type="button" class="btn btn-primary" id="locationToggleManual" @click="openMap">Vælg selv lokation</button> <br>
-                <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getLocation">Find min lokation</button>
+                    <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getLocation">Find min lokation</button> <!-- Fra pi info -->
+                    <h6>Eller vælg fra kortet</h6>
                 <div id="map-container">
-                    <div id="map"></div> <!-- Add the map container -->
+                    <div id="small-map"></div> <!-- Add the map container -->
                 </div>
+                {{longtitute}}
+                {{latitude}}
             </div>
             
             <div class="form-group">
@@ -70,13 +72,7 @@
         </form>
     </div>
     <script src="observation.js"></script>
-    <script>
-        // Initialize the map
-        var map = L.map('map').setView([56.2639, 9.5018], 6);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            maxZoom: 18,
-        }).addTo(map);
-    </script>
+    
+  
 </body>
 </html>

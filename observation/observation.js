@@ -3,6 +3,8 @@ const app = Vue.createApp({
         return {
             buttonText: 'Indsend',
             map: null,
+            longitude : 1,
+            latitude : 2
 
         };
     },
@@ -62,25 +64,37 @@ const app = Vue.createApp({
 
         // Metode til at vise kortet
         initializeMap() {
-            this.map = L.map('map').setView([56.2639, 9.5018], 7); // start position bare kort over dk
-            const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(this.map);
+               // Initialize the map
+        var map = L.map('small-map').setView([56.2639, 9.5018], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
 
-            //  markering af observationer
-            const tempMarker = L.marker([56.2639, 9.5018]).addTo(this.map);
-            tempMarker.bindPopup('Observation').openPopup();
+  
+       
+          var pin = L.marker(map.getCenter() 
+          
+          ).addTo(map);
+          
+          map.on('move', function(e) {
+            pin.setLatLng(map.getCenter());
+            map._renderer._update();
+            longitude = map.getCenter().lng;
+            latitude = map.getCenter().lat;
+          });
 
-            const tempMarker2 = L.marker([56.6649, 9.6418]).addTo(this.map);
-            tempMarker2.bindPopup('Observation').openPopup();
 
-            
+
         }
 
-
+    
 
     },
+    mounted() {
+        this.initializeMap();
+    },
 });
+
 
 app.mount('#app');
