@@ -80,8 +80,8 @@ const app = Vue.createApp({
           map.on('move', function(e) {
             pin.setLatLng(map.getCenter());
             map._renderer._update();
-            longitude = map.getCenter().lng;
-            latitude = map.getCenter().lat;
+            this.longitude = map.getCenter().lng;
+            this.latitude = map.getCenter().lat;
           });
 
 
