@@ -58,16 +58,52 @@ const app = Vue.createApp({
             };
         },
         
+        postObservation(observationObject){
+            const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation`
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", API_URL);
+            xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+            const body = JSON.stringify(observationObject);
+            xhr.onload = () => {
+                if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 201) {
+                  console.log(JSON.parse(xhr.responseText));
+                } else {
+                  console.log(`Error: ${xhr.status}`);
+                }
+            };
+            xhr.send(body);
+        },
+        
         submitForm() {
             if(this.prettyCoordinates == null){
                 alert('Please choose a location on the map');
                 return;
             }
+
+            const observerName = document.getElementById('name').value;
+            const observedAnimal = document.getElementById('animalSeen').value;
+            
+            const observeDate = new Date(document.getElementById('date').value);
+            const observeTime = document.getElementById('time').value.split(':');
+            if(observeTime[2] == 'PM' && observeTime[0] != 12){
+                observeTime[0] += 12;
+            }
+            if(observeTime[2] == 'AM' && observeTime[0] == 12){
+                observeTime[0] -= 12;
+            } 
+            observeDate.setHours(observeTime[0]);
+            observeDate.setMinutes(observeTime[1]);
+            const observeDateTime = observeDate.toISOString().slice(0, 19).replace('T', ' '); //Convert to MySQL DateTime format
+
+            const observationObject = {Id:null, AnimalName:observedAnimal, Date:observeDateTime, Description:this.note, Longitude:this.longitude, Latitude:this.latitude, Picture:null};
+            this.postObservation(observationObject);
             
             alert('Observation oprettet!');
-            window.location.href = '../map.html';
-            return false;
+            //window.location.href = '../map.html';
+            //return false;
         },
+
+        
 
         // Metode til at vise kortet
         initializeMap() {
@@ -97,7 +133,6 @@ const app = Vue.createApp({
 
         getCurrentLocation(){
             //TODO
-            console.log(this.note);
         },
 
         getPinLocation() {
