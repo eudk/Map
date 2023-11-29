@@ -174,7 +174,7 @@ const app = Vue.createApp({
 
 
             return `${degLat}° ${minLat}\' ${secLat}\" ${latNS}, ${degLng}° ${minLng}\' ${secLng}\" ${lngEW}`;
-        },
+        }
         
 
     
