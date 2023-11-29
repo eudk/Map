@@ -93,9 +93,9 @@ const app = Vue.createApp({
             } 
             observeDate.setHours(observeTime[0]);
             observeDate.setMinutes(observeTime[1]);
-            const observeDateTime = observeDate.toISOString().slice(0, 19).replace('T', ' '); //Convert to MySQL DateTime format
+            const observeDateTime = observeDate.toISOString().slice(0, 19) //Convert to MySQL DateTime format
 
-            const observationObject = {Id:null, AnimalName:observedAnimal, Date:observeDateTime, Description:this.note, Longitude:this.longitude, Latitude:this.latitude, Picture:null};
+            const observationObject = {id:0, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:null};
             this.postObservation(observationObject);
             
             alert('Observation oprettet!');
