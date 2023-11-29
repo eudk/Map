@@ -6,7 +6,8 @@ const app = Vue.createApp({
             longitude : null,
             latitude : null,
             prettyCoordinates : null,
-            note : null
+            note : null,
+            isInfoPopupVisible: false
 
         };
     },
@@ -104,6 +105,15 @@ const app = Vue.createApp({
         },
 
         
+        // info popup metoder
+        showInfoPopup() {
+            this.isInfoPopupVisible = true;
+        },
+        closeInfoPopup() {
+            this.isInfoPopupVisible = false;
+        },
+    
+
 
         // Metode til at vise kortet
         initializeMap() {
@@ -164,7 +174,8 @@ const app = Vue.createApp({
 
 
             return `${degLat}° ${minLat}\' ${secLat}\" ${latNS}, ${degLng}° ${minLng}\' ${secLng}\" ${lngEW}`;
-        }
+        },
+        
 
     
 

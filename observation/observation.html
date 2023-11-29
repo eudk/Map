@@ -24,6 +24,12 @@
             
             <div class="form-group">
                 <label for="location">Lokation:</label>  
+                <img src="../fotos/info.png"style height="20" alt="Info" @click="showInfoPopup" id="infoIcon">
+
+                <div v-show="isInfoPopupVisible" class="popup">
+                    <span class="popup-content">Flyt på kortet og vælg Bekræft min lokalitet på map ellers klip find min lokalitet for auto.</span>
+                    <span class="popup-close" @click="closeInfoPopup">×</span>
+                </div>
                 
                 <div class="form-check">
                     <div id="map-container">
@@ -34,7 +40,7 @@
                         <button type="button" class="btn btn-primary" id="locationToggleMap" @click="getPinLocation">Bekræft lokation på map</button> 
 
                     </div>
-
+                </div>
                 
             </div>
             
