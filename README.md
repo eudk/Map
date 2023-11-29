@@ -8,17 +8,17 @@ Implemented with Vue JS , Bootstrap
 _______________________________________________________
 **API's used**
 
-Animals API:
+Animals API: (Limited to 10.000 free API calls/month)
 https://api-ninjas.com/api/animals
 
-Map API & external JS:
+Map API & external JS: (Unlimited use)
 https://leafletjs.com/index.html
 
 
-API for converting coordinates to cities:
+API for converting coordinates to cities: (Unlimited use)
 https://www.bigdatacloud.com/free-api/free-reverse-geocode-to-city-api
 
-Own REST service for Animal Observations:
+Own REST service for Animal Observations: (Unlimited use)
 https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation
 
 _________________________________________________________________
