@@ -44,16 +44,3 @@ html, body {
     border-radius: 50px !important; 
 }
 
-#logo {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 100px;
-    height: auto;
-    cursor: pointer;
-    z-index: 1000;
-}
-
-#logo:hover {
-    opacity: 0.8;
-}

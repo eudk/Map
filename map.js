@@ -57,10 +57,6 @@ const app = Vue.createApp({
                 this.buttonText = 'Zoom In';
                 this.map.setView([56.2639, 9.5018], 7);
             }
-        },
-
-        goToMapPage() {
-            window.location.href = '/map.html';
         }
     },
     mounted() {

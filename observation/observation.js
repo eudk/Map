@@ -114,9 +114,10 @@ const app = Vue.createApp({
             this.isInfoPopupVisible = false;
         },
     
-        goToMapPage() {
-            window.location.href = '/map.html';
-        },
+        // Metode til at gå tilbage til kortet
+       // goToMapPage() {
+        //    window.location.href = '/map.html';
+       // },
 
         // Metode til at vise kortet
         initializeMap() {
