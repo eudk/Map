@@ -204,6 +204,7 @@ const app = Vue.createApp({
     },
     mounted() {
         this.initializeMap();
+        console.log('mounted');
     },
 });
 
