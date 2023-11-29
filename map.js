@@ -58,6 +58,10 @@ const app = Vue.createApp({
                 this.map.setView([56.2639, 9.5018], 7);
             }
         },
+
+        goToMapPage() {
+            window.location.href = '/map.html';
+        }
     },
     mounted() {
         this.initializeMap();
