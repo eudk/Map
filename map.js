@@ -33,7 +33,7 @@ const app = Vue.createApp({
                             <strong>Animal Name:</strong> ${observation.animalName}<br>
                             <strong>Date:</strong> ${observation.date}<br>
                             <strong>Time:</strong> ${new Date(observation.date).toLocaleTimeString()}<br>
-                            <strong>Description:</strong> ${observation.description || 'N/A'}
+                            <strong>Description:</strong> ${observation.description || ''}
                         `;
         
                         const marker = L.marker([observation.latitude, observation.longitude]).addTo(this.map);
