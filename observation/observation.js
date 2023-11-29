@@ -148,7 +148,14 @@ const app = Vue.createApp({
 
         getPinLocation() {
             
-            this.longitude = (this.map.getCenter().lng + 180) % 360 - 180;
+            const rawLng = this.map.getCenter().lng;
+            const scrollDirection = Math.sign(rawLng);
+            const mapLoopIdentifier = rawLng < -180 ? -1 : rawLng > 180 ? 1 : 0;
+            const hemisphere = (Math.abs(rawLng) % 360 < 180 ? 1 : -1) * scrollDirection; //1 = East, -1 = West
+            
+            const correction = -(mapLoopIdentifier * hemisphere);
+            this.longitude = ((correction == 1 ? 180 : 0) + (Math.abs(rawLng) % 180)*(correction == 1 ? -1 : 1))*hemisphere;
+
             this.latitude = this.map.getCenter().lat;
 
             this.prettyCoordinates = this.convertGeographicCoordinateFormat(this.latitude, this.longitude);
