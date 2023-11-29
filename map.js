@@ -29,12 +29,18 @@ const app = Vue.createApp({
                     const observations = response.data;
         
                     observations.forEach(observation => {
+                        const markerContent = `
+                            <strong>Animal Name:</strong> ${observation.animalName}<br>
+                            <strong>Date:</strong> ${observation.date}<br>
+                            <strong>Time:</strong> ${new Date(observation.date).toLocaleTimeString()}<br>
+                            <strong>Description:</strong> ${observation.description || 'N/A'}
+                        `;
+        
                         const marker = L.marker([observation.latitude, observation.longitude]).addTo(this.map);
-                        marker.bindPopup('Observation').openPopup();
+                        marker.bindPopup(markerContent).openPopup();
                         this.markers.push(marker);
                     });
         
-                    // Kort over DK til at starte med
                     this.map.setView([56.2639, 9.5018], 7);
                 })
                 .catch(error => {
