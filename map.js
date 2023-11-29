@@ -1,7 +1,9 @@
+
 const app = Vue.createApp({
     data() {
         return {
             map: null,
+            markers: [],
             buttonText: 'Zoom In', // skal bruge ellers skifter den ikke navn
         };
     },
@@ -9,18 +11,35 @@ const app = Vue.createApp({
 
     methods: {
         initializeMap() {
-            this.map = L.map('map').setView([56.2639, 9.5018], 7); // start position bare kort over dk
+            this.map = L.map('map').setView([56.2639, 9.5018], 7);
             const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(this.map);
-        
-            //  markering af observationer
-            const tempMarker = L.marker([56.2639, 9.5018]).addTo(this.map);
-            tempMarker.bindPopup('Observation').openPopup();
 
-            const tempMarker2 = L.marker([56.6649, 9.6418]).addTo(this.map);
-            tempMarker2.bindPopup('Observation').openPopup();
+            // Fetch observation data from the database and add markers
+            this.fetchObservations();
+        },
+
+        fetchObservations() {
+            const API_URL = 'https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation';
+        
+            axios.get(API_URL)
+                .then(response => {
+                    const observations = response.data;
+        
+                    observations.forEach(observation => {
+                        const marker = L.marker([observation.latitude, observation.longitude]).addTo(this.map);
+                        marker.bindPopup('Observation').openPopup();
+                        this.markers.push(marker);
+                    });
+        
+                    // Kort over DK til at starte med
+                    this.map.setView([56.2639, 9.5018], 7);
+                })
+                .catch(error => {
+                    console.error('Error fetching observations:', error);
+                });
         },
 
         // Knap til at zoome ind og ud metode (:
