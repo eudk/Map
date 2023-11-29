@@ -7,6 +7,7 @@ const app = Vue.createApp({
             latitude : null,
             prettyCoordinates : null,
             note : null,
+            cityName: null ,
             isInfoPopupVisible: false
 
         };
@@ -147,13 +148,24 @@ const app = Vue.createApp({
 
         getPinLocation() {
             
-            this.longitude = this.map.getCenter().lng;
-            this.latitude = this.map.getCenter().lat;
-
-            this.prettyCoordinates = this.convertGeographicCoordinateFormat(this.latitude, this.longitude);
-
-            console.log(this.longitude);
-            console.log(this.latitude);
+                this.longitude = this.map.getCenter().lng;
+                this.latitude = this.map.getCenter().lat;
+                console.log(this.longitude);
+                console.log(this.latitude);
+            
+                // Fetch city name using reverse geocoding API
+                const reverseGeocodeApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${this.latitude}&longitude=${this.longitude}&localityLanguage=en`;
+            
+                axios.get(reverseGeocodeApiUrl)
+                    .then(response => {
+                        const cityName = response.data.locality;
+                        
+                        this.prettyCoordinates = this.convertGeographicCoordinateFormat(this.latitude, this.longitude);
+                        this.cityName = cityName;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching city name:', error);
+                    });
            
         },
 
