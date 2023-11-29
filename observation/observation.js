@@ -5,7 +5,8 @@ const app = Vue.createApp({
             map: null,
             longitude : null,
             latitude : null,
-            prettyCoordinates : null
+            prettyCoordinates : null,
+            note : null
 
         };
     },
@@ -58,6 +59,11 @@ const app = Vue.createApp({
         },
         
         submitForm() {
+            if(this.prettyCoordinates == null){
+                alert('Please choose a location on the map');
+                return;
+            }
+            
             alert('Observation oprettet!');
             window.location.href = '../map.html';
             return false;
@@ -91,6 +97,7 @@ const app = Vue.createApp({
 
         getCurrentLocation(){
             //TODO
+            console.log(this.note);
         },
 
         getPinLocation() {
