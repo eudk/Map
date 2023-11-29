@@ -1,6 +1,8 @@
 # Map
 Map and Observation for NaturDanmark projekt. Coordinate API , Map API , REST , Coordinate to City API used
 
+<img src="fotos/logo.png" alt="logo" style="height: 200px;">
+
 _______________________________________________________
 Implemented with Vue JS , Bootstrap
 _______________________________________________________
