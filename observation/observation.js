@@ -47,12 +47,12 @@ const app = Vue.createApp({
 
         validateFile(event){
             const MB = 1024*1024;
-            const maximumFileSize = MB*4;
-            var uploadField = document.getElementById("photo");
+            const maximumFileSize = 30;
+            var uploadField = document.getElementById('photo');
 
-            if(uploadField.files[0].size > 1){
-                alert("File is too big!");
-                uploadField.value = "";
+            if(uploadField.files[0].size > maximumFileSize * MB){
+                alert(`Maximum file size (${maximumFileSize}MB) exceeded!`);
+                uploadField.value = '';
             };
         },
         
