@@ -4,7 +4,8 @@ const app = Vue.createApp({
             buttonText: 'Indsend',
             map: null,
             longitude : null,
-            latitude : null
+            latitude : null,
+            prettyCoordinates : null
 
         };
     },
@@ -88,13 +89,39 @@ const app = Vue.createApp({
 
         },
 
+        getCurrentLocation(){
+            //TODO
+        },
+
         getPinLocation() {
             
             this.longitude = this.map.getCenter().lng;
             this.latitude = this.map.getCenter().lat;
+
+            this.prettyCoordinates = this.convertGeographicCoordinateFormat(this.latitude, this.longitude);
+
             console.log(this.longitude);
             console.log(this.latitude);
            
+        },
+
+        convertGeographicCoordinateFormat(lat, lng) {
+            
+            const absDegLat = Math.abs(lat);
+            const degLat = Math.floor(absDegLat);
+            const minLat = Math.floor(60 * (absDegLat - degLat));
+            const secLat = Math.round(3600 * (absDegLat - degLat) - 60 * minLat);
+            const latNS = Math.sign(lat) == 1 ? "N" : "S";
+
+            const absDegLng = Math.abs(lng);
+            const degLng = Math.floor(absDegLng);
+            const minLng = Math.floor(60 * (absDegLng - degLng));
+            const secLng = Math.round(3600 * (absDegLng - degLng) - 60 * minLng);
+            const lngEW = Math.sign(lng) == 1 ? "E" : "W";
+
+
+
+            return `${degLat}° ${minLat}\' ${secLat}\" ${latNS}, ${degLng}° ${minLng}\' ${secLng}\" ${lngEW}`;
         }
 
     
