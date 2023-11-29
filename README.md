@@ -24,3 +24,8 @@ https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation
 _________________________________________________________________
 
 Database on Simply.com
+_________________________________________________________________
+**Previews:**
+
+<img src="fotos/gitpreview/preview1.png" style="height: 500px;">
+<img src="fotos/gitpreview/preview2.png" style="height: 500px;">
