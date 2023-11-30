@@ -5,6 +5,7 @@ const app = Vue.createApp({
             map: null,
             markers: [],
             buttonText: 'Zoom In', // skal bruge ellers skifter den ikke navn
+            animalFilter: "Aardvark"
         };
     },
 
@@ -46,6 +47,13 @@ const app = Vue.createApp({
                 .catch(error => {
                     console.error('Error fetching observations:', error);
                 });
+        },
+
+        filterObservationsByAnimal(){
+            const filterArray = this.markers.filter((marker) => marker.getPopup().getContent().split("<br>")[0].split("</strong> ")[1] != this.animalFilter);
+            filterArray.forEach((marker) => {
+                this.map.removeLayer(marker);
+            });
         },
 
         // Knap til at zoome ind og ud metode (:
