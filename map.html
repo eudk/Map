@@ -18,6 +18,13 @@
         <div id="map-container">
             <div id="map"></div>
         </div>
+
+        <div id="overlay">
+            <div class="form-group">
+                <input type="text" placeholder="Search" v-model="animalFilter">
+                <input type="submit" id="search" v-on:click="filterObservationsByAnimal"/>
+            </div>
+        </div>
         
         <div id="buttons-container">
             <button id="zoomin" class="btn btn-success rounded-pill" v-on:click="zoomCurrentLocation">{{ buttonText }}</button> <!-- Zoomer ind og saa skriver tilbage -->

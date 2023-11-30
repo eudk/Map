@@ -31,6 +31,20 @@ html, body {
     margin-bottom: 10px;
 }
 
+#overlay {
+    position: fixed;
+    display: block;
+    width: 20%;
+    height: 5%;
+    top: 10px;
+    left: 50px;
+    right: 80%;
+    bottom: 90%;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 10000000;
+    cursor: pointer;
+  }
+
 /* Mellem buttons afstand. */
 
 .btn {
@@ -63,3 +77,4 @@ html, body {
   #cancelBtn {
     background-color: red;
     color: white;
+  }

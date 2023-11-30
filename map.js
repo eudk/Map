@@ -5,7 +5,7 @@ const app = Vue.createApp({
             map: null,
             markers: [],
             buttonText: 'Zoom In', // skal bruge ellers skifter den ikke navn
-            animalFilter: "Aardvark"
+            animalFilter: null
         };
     },
 
@@ -50,9 +50,12 @@ const app = Vue.createApp({
         },
 
         filterObservationsByAnimal(){
-            const filterArray = this.markers.filter((marker) => marker.getPopup().getContent().split("<br>")[0].split("</strong> ")[1] != this.animalFilter);
-            filterArray.forEach((marker) => {
+            this.markers.forEach((marker) => {
                 this.map.removeLayer(marker);
+            });
+            const filterArray = this.markers.filter((marker) => marker.getPopup().getContent().split("<br>")[0].split("</strong> ")[1].includes(this.animalFilter));
+            filterArray.forEach((marker) => {
+                marker.addTo(this.map);
             });
         },
 
