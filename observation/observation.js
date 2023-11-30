@@ -197,6 +197,12 @@ const app = Vue.createApp({
 
 
             return `${degLat}° ${minLat}\' ${secLat}\" ${latNS}, ${degLng}° ${minLng}\' ${secLng}\" ${lngEW}`;
+        },
+
+        cancelSubmission(){
+            if(confirm("Cancel observation?\nChanges will not be saved.")){
+                window.location.href = '../map.html';
+            }
         }
         
 

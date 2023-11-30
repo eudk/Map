@@ -77,12 +77,7 @@
                 
                 <button type="submit" class="btn btn-primary">Submit</button>
 
-                <button class="btn btn-primary" onclick="goBack()">Return</button>
-                <script>
-                    function goBack() {
-                        window.location.href = '../map.html';
-                    } //gå tilbage skal ligge i en funktion åbenbart
-                </script>
+                <button class="btn btn-primary" @click="cancelSubmission">Return</button>
             </div>
         </form>
     </div>
