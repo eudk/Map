@@ -106,7 +106,14 @@ const app = Vue.createApp({
             //return false;
         },
 
-        
+        handleDescriptionInput() {
+            if (this.note.length > 1024) {
+              alert('Description cannot exceed 1024 characters.');
+              this.note = this.note.slice(0, 1024);
+            }
+          },
+
+
         // info popup metoder
         showInfoPopup() {
             this.isInfoPopupVisible = true;

@@ -53,3 +53,13 @@ html, body {
     font-size: 10px; 
     color: gray;
 }
+
+
+#submitBtn {
+    background-color: green;
+    color: white; 
+  }
+
+  #cancelBtn {
+    background-color: red;
+    color: white;
