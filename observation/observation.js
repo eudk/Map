@@ -1,7 +1,6 @@
 const app = Vue.createApp({
     data() {
         return {
-            buttonText: 'Indsend',
             map: null,
             longitude : null,
             latitude : null,
@@ -68,10 +67,13 @@ const app = Vue.createApp({
             const body = JSON.stringify(observationObject);
             xhr.onload = () => {
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 201) {
-                  console.log(JSON.parse(xhr.responseText));
+                    console.log(JSON.parse(xhr.responseText));
+                    alert('Observation published!');
                 } else {
-                  console.log(`Error: ${xhr.status}`);
+                    alert('Oh no! Something went wrong.');  
+                    console.log(`Error: ${xhr.status}`);
                 }
+                window.location.href = '../map.html';
             };
             xhr.send(body);
         },
@@ -100,8 +102,7 @@ const app = Vue.createApp({
             const observationObject = {id:0, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:null};
             this.postObservation(observationObject);
             
-            alert('Observation oprettet!');
-            //window.location.href = '../map.html';
+            
             //return false;
         },
 

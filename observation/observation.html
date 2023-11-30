@@ -4,7 +4,7 @@
     <base target="_top">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ny Observation</title>
+    <title>New Observation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="fotos/logo.png" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -15,19 +15,19 @@
 </head>
 <body>
     <div id="app" class="container mt-5">
-        <h2>Ny Observation</h2>
+        <h2>New Observation</h2>
         <form @submit.prevent="submitForm" id="observationForm">
             <div class="form-group">
-                <label for="name">Navn:</label>
-                <input type="text" class="form-control" id="name" placeholder="Indtast dit navn" required>
+                <label for="name">Observer:</label>
+                <input type="text" class="form-control" id="name" placeholder="Name" required>
             </div>
 
             <div class="form-group">
-                <label for="location">Lokation:</label>  
+                <label for="location">Location:</label>  
                 <img src="../fotos/info.png"style height="20" alt="Info" @click="showInfoPopup" id="infoIcon">
 
                 <div v-show="isInfoPopupVisible" class="popup">
-                    <span class="popup-content">Flyt på kortet og vælg Bekræft min lokalitet på map ellers klip find min lokalitet for auto.</span>
+                    <span class="popup-content">Drag the map and hit "Choose on map," or hit "Use current location" to pick automatically</span>
                     <span class="popup-close" @click="closeInfoPopup">×</span>
                 </div>
                 
@@ -37,47 +37,47 @@
                         <div id="coordinates">{{prettyCoordinates}}</div>
                         <div id="cityName">{{cityName}}</div>
                         <br>
-                        <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getCurrentLocation">Find min lokation</button> <!-- Fra pi info -->
-                        <button type="button" class="btn btn-primary" id="locationToggleMap" @click="getPinLocation">Bekræft lokation på map</button> 
+                        <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getCurrentLocation">Use current location</button> <!-- Fra pi info -->
+                        <button type="button" class="btn btn-primary" id="locationToggleMap" @click="getPinLocation">Choose on map</button> 
 
                     </div>
                 </div>
             
                 <div class="form-group">
-                    <label for="date">Dato:</label>
+                    <label for="date">Observation Date:</label>
                     <input type="date" class="form-control" id="date" value="${new Date().toISOString().split('T')[0]}" required>
                 </div>
                 <div class="form-group">
-                    <label for="time">Tidspunkt:</label>
+                    <label for="time">Observation Time:</label>
                     <input type="time" class="form-control" id="time" value="${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}" required>
                 </div>
                 
                 <div class="form-group"></div>
-                    <label for="animalSearch">Søg efter et dyr på engelsk (tager et par sekunder):</label>
-                    <input type="text" class="form-control" id="animalSearch" placeholder="Indtast dyrets navn">
-                    <button type="button" class="btn btn-primary" @click="searchAnimal">Søg</button>
+                    <label for="animalSearch">Search animal database:</label>
+                    <input type="text" class="form-control" id="animalSearch" placeholder="Animal name">
+                    <button type="button" class="btn btn-primary" @click="searchAnimal">Search</button>
                 </div>
                 
                 <div class="form-group">
-                    <label for="animalSeen">Vælg et dyr:</label>
+                    <label for="animalSeen">Observed animal:</label>
                     <select class="form-control" id="animalSeen"  required></select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="photo">Billede:</label>
+                    <label for="photo">Photo:</label>
                     <input type="file" accept=".png, .jpg, .jpeg, .heic" class="form-control-file" id="photo" @change="validateFile">
                 </div>
 
                 <div class="form-group">
-                    <label for="note">Beskrivelse (Max 1024 tegn)</label><br>
+                    <label for="note">Description (at most 1024 symbols)</label><br>
                     <textarea v-model="note" placeholder="Indtast din beskrivelse" style="width: 100%" maxlength="1024"></textarea>
                 </div>
                 
                 
                 
-                <button type="submit" class="btn btn-primary">{{ buttonText }}</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
 
-                <button class="btn btn-primary" onclick="goBack()">Gå tilbage</button>
+                <button class="btn btn-primary" onclick="goBack()">Return</button>
                 <script>
                     function goBack() {
                         window.location.href = '../map.html';
