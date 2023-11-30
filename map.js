@@ -53,7 +53,7 @@ const app = Vue.createApp({
             this.markers.forEach((marker) => {
                 this.map.removeLayer(marker);
             });
-            const filterArray = this.markers.filter((marker) => marker.getPopup().getContent().split("<br>")[0].split("</strong> ")[1].includes(this.animalFilter));
+            const filterArray = this.markers.filter((marker) => marker.getPopup().getContent().split("<br>")[0].split("</strong> ")[1].toLowerCase().includes(this.animalFilter.toLowerCase()));
             filterArray.forEach((marker) => {
                 marker.addTo(this.map);
             });
