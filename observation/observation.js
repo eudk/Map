@@ -77,31 +77,38 @@ const app = Vue.createApp({
             };
             xhr.send(body);
         },
-        
         submitForm() {
-            if(this.prettyCoordinates == null){
-                alert('Please choose a location on the map');
-                return;
+            try {
+                if (this.prettyCoordinates == null) {
+                    alert('Please choose a location on the map');
+                    return;
+                }
+        
+        
+                
+                const observerName = document.getElementById('name').value;
+                const observedAnimal = document.getElementById('animalSeen').value;
+                
+                const observeDate = new Date(document.getElementById('date').value);
+                const observeTime = document.getElementById('time').value.split(':');
+                if(observeTime[2] == 'PM' && observeTime[0] != 12){
+                    observeTime[0] += 12;
+                }
+                if(observeTime[2] == 'AM' && observeTime[0] == 12){
+                    observeTime[0] -= 12;
+                } 
+                observeDate.setHours(observeTime[0]);
+                observeDate.setMinutes(observeTime[1]);
+                const observeDateTime = observeDate.toISOString().slice(0, 19) //Convert to MySQL DateTime format
+                
+                const observationObject = {id:0, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:null};
+                this.postObservation(observationObject);
+                
+                console.log("NEW POST MADE");
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                // You can also display an alert or perform other error-handling actions if needed
             }
-
-            const observerName = document.getElementById('name').value;
-            const observedAnimal = document.getElementById('animalSeen').value;
-            
-            const observeDate = new Date(document.getElementById('date').value);
-            const observeTime = document.getElementById('time').value.split(':');
-            if(observeTime[2] == 'PM' && observeTime[0] != 12){
-                observeTime[0] += 12;
-            }
-            if(observeTime[2] == 'AM' && observeTime[0] == 12){
-                observeTime[0] -= 12;
-            } 
-            observeDate.setHours(observeTime[0]);
-            observeDate.setMinutes(observeTime[1]);
-            const observeDateTime = observeDate.toISOString().slice(0, 19) //Convert to MySQL DateTime format
-
-            const observationObject = {id:0, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:null};
-            this.postObservation(observationObject);
-            
             
             //return false;
         },

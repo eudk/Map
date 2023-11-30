@@ -55,7 +55,7 @@
                 <div class="form-group"></div>
                     <label for="animalSearch">Search animal database: *</label>
                     <input type="text" class="form-control" id="animalSearch" placeholder="Animal name">
-                    <button type="button" class="btn btn-primary" @click="searchAnimal">Search</button>
+                    <button type="button" class="btn btn-primary" @click="searchAnimal" id="animalSearchBtn">Search</button>
                 </div>
                 
                 <div class="form-group">
@@ -70,7 +70,7 @@
 
                 <div class="form-group">
                     <label for="note">Description (at most 1024 symbols)</label><br>
-                    <textarea v-model="note" @input="handleDescriptionInput" placeholder="Enter your description (Optional)" style="width: 100%" maxlength="1024"></textarea>
+                    <textarea v-model="note" @input="handleDescriptionInput" id="note" placeholder="Enter your description (Optional)" style="width: 100%" maxlength="1024"></textarea>
                   </div>
                 
                 
