@@ -203,6 +203,14 @@ const app = Vue.createApp({
             if(confirm("Cancel observation?\nChanges will not be saved.")){
                 window.location.href = '../map.html';
             }
+        },
+
+        initialize(){
+            this.initializeMap();
+            const date = new Date(); //now
+            document.getElementById("date").setAttribute('max', date.toISOString().split('T')[0]);
+            date.setFullYear(date.getFullYear() - 1);
+            document.getElementById("date").setAttribute('min', date.toISOString().split('T')[0]);
         }
         
 
@@ -210,7 +218,7 @@ const app = Vue.createApp({
 
     },
     mounted() {
-        this.initializeMap();
+        this.initialize();
         console.log('mounted');
     },
 });
