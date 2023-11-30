@@ -16,6 +16,12 @@
 <body>
     <div id="app" class="container mt-5">
         <h2>New Observation</h2>
+        <img src="../fotos/info.png"style height="20" alt="Info" @click="showInfoPopup" id="infoIcon">
+
+        <div v-show="isInfoPopupVisible" class="popup">
+            <span class="popup-content">Drag the map and hit "Choose on map," or hit "Use current location" to pick automatically</span>
+            <span class="popup-close" @click="closeInfoPopup">×</span>
+        </div>
         <form @submit.prevent="submitForm" id="observationForm">
             <div class="form-group">
                 <label for="name">Observer: *</label>
@@ -24,12 +30,6 @@
 
             <div class="form-group">
                 <label for="location">Location: *</label>  
-                <img src="../fotos/info.png"style height="20" alt="Info" @click="showInfoPopup" id="infoIcon">
-
-                <div v-show="isInfoPopupVisible" class="popup">
-                    <span class="popup-content">Drag the map and hit "Choose on map," or hit "Use current location" to pick automatically</span>
-                    <span class="popup-close" @click="closeInfoPopup">×</span>
-                </div>
                 
                 <div class="form-check">
                     <div id="map-container">
@@ -37,9 +37,10 @@
                         <div id="coordinates">{{prettyCoordinates}}</div>
                         <div id="cityName">{{cityName}}</div>
                         <br>
-                        <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getCurrentLocation">Use current location</button> <!-- Fra pi info -->
-                        <button type="button" class="btn btn-primary" id="locationToggleMap" @click="getPinLocation">Choose on map</button> 
-
+                        <div id="buttons-container">
+                            <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getCurrentLocation">Use current location</button>
+                            <button type="button" class="btn btn-primary" id="locationToggleMap" @click="getPinLocation">Choose on map</button>
+                        </div>
                     </div>
                 </div>
             
