@@ -205,9 +205,32 @@ const app = Vue.createApp({
             }
         },
 
+        validateTime(){
+            const time = new Date();
+            if(new Date(document.getElementById("date").value).getDate() != time.getDate()){ //skip time validation if date is not set as today
+                return;
+            }
+
+            const element = document.getElementById("time");
+            const value = element.value.split(":");           
+            time.setHours(value[0]);
+            time.setMinutes(value[1]);
+            if(time > new Date()){
+                this.getCurrentTime();
+            }
+        },
+
+        getCurrentTime(){
+            const date = new Date(); //now
+            date.setTime(date.getTime() - date.getTimezoneOffset()*60*1000); //I have no clue why this is necessary
+            document.getElementById("time").value = date.toISOString().split('T')[1].slice(0,5);
+        },
+
         initialize(){
             this.initializeMap();
+            this.getCurrentTime();
             const date = new Date(); //now
+            document.getElementById("date").value = date.toISOString().split('T')[0];
             document.getElementById("date").setAttribute('max', date.toISOString().split('T')[0]);
             date.setFullYear(date.getFullYear() - 1);
             document.getElementById("date").setAttribute('min', date.toISOString().split('T')[0]);
