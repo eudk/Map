@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NaturDanmark</title>
-    <link rel="shortcut icon" type="image/x-icon" href="fotos/logo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="fotos/logo.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
@@ -22,7 +22,7 @@
         <div id="overlay">
             <div class="form-group">
                 <input type="text" placeholder="Search" v-model="animalFilter">
-                <input type="submit" id="search" v-on:click="filterObservationsByAnimal"/>
+                <input type="submit" id="search" v-on:click="filterObservationsByAnimal">
             </div>
         </div>
         
@@ -33,7 +33,9 @@
         </div>
         <a href="infopages/documentation.html" class="documentation-link">docs</a>
     </div>
+
+    <script src="map.js"></script>
     
 </body>
-<script src="map.js"></script>
+
 </html>
