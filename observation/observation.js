@@ -97,7 +97,7 @@ const app = Vue.createApp({
                 observeDate.setMinutes(observeTime[1]);
                 const observeDateTime = observeDate.toISOString().slice(0, 19) //Convert to MySQL DateTime format
                 
-                const observationObject = {id:0, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:null};
+                const observationObject = {id:0, userName:observerName, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:null};
                 this.postObservation(observationObject);
                 
                 console.log("NEW POST MADE");
