@@ -22,7 +22,6 @@ const app = Vue.createApp({
             if (animalName.trim() !== '') {
                 const apiKey = 'IYof7GYA8H5s10qs39C6Hw==esi6cp90GJdESuPf'; // API key ændr her hvis det er 
                 const apiUrl = `https://api.api-ninjas.com/v1/animals?name=${animalName}`;
-
                
                 axios.get(apiUrl, { headers: { 'X-Api-Key': apiKey } })
                     .then(response => {
@@ -37,14 +36,13 @@ const app = Vue.createApp({
                             option.text = animal.name;
                             animalSeenSelect.appendChild(option);
                         });
-
                      
                     })
                     .catch(error => {
                         // måske noget til fejl kan ikke få den til at virke
                     });
             } else {
-                alert('Indtast dyrets navn.');
+                alert('Enter the name of the animal');
             }
         },
 
@@ -84,8 +82,6 @@ const app = Vue.createApp({
                     return;
                 }
         
-        
-                
                 const observerName = document.getElementById('name').value;
                 const observedAnimal = document.getElementById('animalSeen').value;
                 
@@ -137,27 +133,19 @@ const app = Vue.createApp({
         // Metode til at vise kortet
         initializeMap() {
                // Initialize the map
-        var map = L.map('small-map').setView([56.2639, 9.5018], 6);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            maxZoom: 18,
-        }).addTo(map);
-
-  
+            var map = L.map('small-map').setView([56.2639, 9.5018], 6);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                maxZoom: 18,
+            }).addTo(map);
        
-          var pin = L.marker(map.getCenter() 
-          
-          ).addTo(map);
-          
-          map.on('move', function(e) {
-            pin.setLatLng(map.getCenter());
-           // map._renderer._update();
-           
-          });
+            var pin = L.marker(map.getCenter()).addTo(map);
+            
+            map.on('move', function(e) {
+                pin.setLatLng(map.getCenter());
+            // map._renderer._update();          
+            });
             this.map = map;
-
-
-
         },
 
         getCurrentLocation(){
@@ -207,8 +195,6 @@ const app = Vue.createApp({
             const minLng = Math.floor(60 * (absDegLng - degLng));
             const secLng = Math.round(3600 * (absDegLng - degLng) - 60 * minLng);
             const lngEW = Math.sign(lng) == 1 ? "E" : "W";
-
-
 
             return `${degLat}° ${minLat}\' ${secLat}\" ${latNS}, ${degLng}° ${minLng}\' ${secLng}\" ${lngEW}`;
         },

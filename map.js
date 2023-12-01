@@ -64,7 +64,7 @@ const app = Vue.createApp({
         // Knap til at zoome ind og ud metode (:
         zoomCurrentLocation() {
             if (this.buttonText === 'Zoom In') {
-                this.buttonText = 'Tilbage';
+                this.buttonText = 'Center';
                 this.map.setView([56.2639, 9.5018], 13);
             } else {
                 this.buttonText = 'Zoom In';
