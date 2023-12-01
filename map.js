@@ -37,8 +37,9 @@ const app = Vue.createApp({
                             <strong>Description:</strong> ${observation.description || ''}
                         `;
         
-                        const marker = L.marker([observation.latitude, observation.longitude]).addTo(this.map);
-                        marker.bindPopup(markerContent).openPopup();
+                        const marker = L.marker([observation.latitude, observation.longitude]);
+                        marker.bindPopup(markerContent);
+                        this.map.addLayer(marker);
                         this.markers.push(marker);
                     });
         
@@ -55,7 +56,7 @@ const app = Vue.createApp({
             });
             const filterArray = this.markers.filter((marker) => marker.getPopup().getContent().split("<br>")[0].split("</strong> ")[1].toLowerCase().includes(this.animalFilter.toLowerCase()));
             filterArray.forEach((marker) => {
-                marker.addTo(this.map);
+                this.map.addLayer(marker);
             });
         },
 
