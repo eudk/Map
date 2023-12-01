@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="list.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
 </head>
 <body>
     <div id="app">
@@ -15,6 +16,17 @@
             <input type="text" id="searchText" placeholder="Search" v-model="searchString">
             <input type="submit" id="search" v-on:click="submit">
         </div>
+
+        <div>
+            <ul>
+                <li v-for="observation in observations">
+                    {{observation.date}}
+                    {{observation.animalName}}
+                    {{observation.userName}}
+                </li>
+            </ul>
+        </div>
     </div>
+    <script src="list.js"></script>
 </body>
 </html>
