@@ -5,8 +5,9 @@ const app = Vue.createApp({
             map: null,
             markers: [],
             buttonText: 'Zoom In', // skal bruge ellers skifter den ikke navn
-            animalFilter: null
-        };
+            animalFilter: null,
+            loading: true, 
+                };
     },
 
 
@@ -48,8 +49,14 @@ const app = Vue.createApp({
                 })
                 .catch(error => {
                     console.error('Error fetching observations:', error);
+                })
+                .finally(() => {
+                    this.loading = false;  // loading stopper 
                 });
-        },
+
+
+      },
+    
 
         filterObservationsByAnimal(){
             this.markers.forEach((marker) => {
@@ -77,5 +84,15 @@ const app = Vue.createApp({
         console.log('mounted');
     },
 });
+// Loading spinnner evt. kan vi ændr loading navn her
+app.component('loading-spinner', {
+    template: `
+        <div v-if="loading" class="loading-spinner">
+            Loading observations... 
+        </div>
+    `,
+    props: ['loading'],
+});
 
 app.mount('#app');
+
