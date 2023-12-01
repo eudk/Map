@@ -232,8 +232,8 @@ const app = Vue.createApp({
             const date = new Date(); //now
             document.getElementById("date").value = date.toISOString().split('T')[0];
             document.getElementById("date").setAttribute('max', date.toISOString().split('T')[0]);
-            date.setFullYear(date.getFullYear() - 1);
-            document.getElementById("date").setAttribute('min', date.toISOString().split('T')[0]);
+            const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+            document.getElementById("date").setAttribute('min', sevenDaysAgo.toISOString().split('T')[0]);
         }
         
 
