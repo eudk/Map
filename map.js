@@ -30,10 +30,11 @@ const app = Vue.createApp({
                     const observations = response.data;
         
                     observations.forEach(observation => {
+                        const dateTime = observation.date.split('T');
                         const markerContent = `
                             <strong>Animal Name:</strong> ${observation.animalName}<br>
-                            <strong>Date:</strong> ${observation.date}<br>
-                            <strong>Time:</strong> ${new Date(observation.date).toLocaleTimeString()}<br>
+                            <strong>Date:</strong> ${dateTime[0]}<br>
+                            <strong>Time:</strong> ${dateTime[1]}<br>
                             <strong>Description:</strong> ${observation.description || ''}
                         `;
         
