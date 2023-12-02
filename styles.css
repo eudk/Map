@@ -92,3 +92,21 @@ html, body {
     font-size: 18px;
     z-index: 1000;
 }
+
+
+
+.logo {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 50px; 
+    height: auto;
+}
+
+.home {
+    position: fixed;
+    top: 10px;
+    right: 60px;
+    width: 50px; 
+    height: auto;
+}
