@@ -4,9 +4,10 @@ const baseurlsearch="https://naturdanmark-api20231124193012.azurewebsites.net/Ap
 const app = Vue.createApp({
     data() {
         return {
-            searchString: null,
+            searchString:"",
             observations:[],
-            setamount:20
+            setamount:20,
+            datetime:[]
         };
     },
     async created()
@@ -15,6 +16,8 @@ const app = Vue.createApp({
     },
     methods: {
         submit(){
+            this.CreatedToday(baseurl)
+            console.log("searched")
 
         },
         async CreatedToday(url,amount=this.setamount)
@@ -22,7 +25,7 @@ const app = Vue.createApp({
             try
             {
                 this.setamount=amount
-                const response= await axios.get(url+"/Api/Observation?fromToday=true&sortMethod=datedesc&amount="+this.setamount)
+                const response= await axios.get(url+"/Api/Observation?sortMethod=datedesc&amount="+this.setamount + "&AnimalName=" + this.searchString)
                 this.observations=response.data
                 console.log("data created")
             }
@@ -31,7 +34,7 @@ const app = Vue.createApp({
                 alert(ex.message)
             }
             
-        }
+        },
     },
     mounted() {
         console.log('mounted');
