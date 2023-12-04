@@ -93,3 +93,10 @@ html, body {
 #locationToggleMap {
     margin: 0 5px; 
 }
+
+#table,th,td
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-bottom: 1px solid #ddd
+}
