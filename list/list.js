@@ -20,6 +20,9 @@ const app = Vue.createApp({
             console.log("searched")
 
         },
+        goto(observationId){
+            console.log(observationId);
+        },
         async CreatedToday(url,amount=this.setamount)
         {
             try
