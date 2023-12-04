@@ -93,3 +93,12 @@ html, body {
 #locationToggleMap {
     margin: 0 5px; 
 }
+
+
+.logo {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 50px; 
+    height: auto;
+}

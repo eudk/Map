@@ -15,11 +15,21 @@
 </head>
 <body>
     <div id="app">
+        <loading-spinner :loading="loading"></loading-spinner> <!-- LOADING OVERLAY -->
         <div id="map-container">
             <div id="map"></div>
         </div>
-
+        
         <div id="overlay">
+            <div class="header">
+            <a href="../index.html">
+                <img src="fotos/logo.png" alt="Logo" class="logo">
+                <a href="/list/list.html">
+
+                    <img src="fotos/home.png" alt="home" class="home">
+        
+            </a>
+        </div>
             <div class="form-group">
                 <input type="text" placeholder="Search" v-model="animalFilter">
                 <input type="submit" id="search" v-on:click="filterObservationsByAnimal">
