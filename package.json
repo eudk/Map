@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "scripts": {
+    "start": "node observation/observation.js"
+  },
+  "dependencies": {
+    "@cloudinary/url-gen": "^1.13.0"
+  }
+}
