@@ -31,7 +31,7 @@
                     <td>{{observation.userName}}</td>
                     <td>{{observation.date.split('T')[0]}}</td>
                     <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
-                    <td><a href=read/read.html class="btn btn-success rounded-pill" v-on:click="getid(observation.id)" data-tempid="{{observation.id}}">Details</a></td>
+                    <td><a href=read/read.html class="btn btn-success rounded-pill" v-on:click="getid(observation.id)">Details</a></td>
                 </tbody>
             </table>
         </div>
