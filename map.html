@@ -22,23 +22,27 @@
         
         <div id="overlay">
             <div class="header">
-                <a href="../index.html">
+                <a href="index.html">
                     <img src="fotos/logo.png" alt="Logo" class="logo">
-                    <a href="/list/list.html">
-                        
-                        <img src="fotos/user.png" alt="home" class="home">
-                        
-                        <img src="fotos/add.png" alt="add" class="add">
-                        <a href="/list/list.html">
-                            
-                            <img src="fotos/list.png" alt="list" class="list">
-                            <a href="/list/list.html">
+                </a>
+
+                <a href="index.html">
+                            <img src="fotos/user.png" alt="user" class="user">
+                        </a>
+
+                        <a href="/observation/observation.html">
+                            <img src="fotos/add.png" alt="add" class="add">
+                        </a>
+ 
+                        <a href="../list/list.html">
+                                <img src="fotos/list.png" alt="list" class="list">
+
                             </a>
                             <div class="form-group">
                                 <input type="text" placeholder="Search" v-model="animalFilter">
                                 <input type="submit" id="search" v-on:click="filterObservationsByAnimal">
-                                <button id="zoomin"  v-on:click="zoomCurrentLocation">{{ buttonText }}</button> <!-- Zoomer ind og saa skriver tilbage -->
-                </div>
+<!--                                 <button id="zoomin"  v-on:click="zoomCurrentLocation">{{ buttonText }}</button> --->
+    </div>
         </div>
         </div>
         
