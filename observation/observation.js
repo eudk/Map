@@ -1,5 +1,4 @@
-//import {Cloudinary} from "@cloudinary/url-gen"; dosent work
-
+//import cloudinary from "cloudinary-core";
 const app = Vue.createApp({
     data() {
         return {
@@ -64,58 +63,51 @@ const app = Vue.createApp({
         },
         
 // metode til foto upload
-        handlePhotoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const formData = new FormData();
-                formData.append("file", file);
+handlePhotoUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        // Initialize Cloudinary within the method
+        const cloudinaryCloudName = "dwjc4s71v";
+        const cloudinaryApiKey = "176474679379314";
+        const cloudinaryApiSecret = "YFgdiMOXqhvSobpeYMhqDYywj7A";
         
-                // Cloudinary configuration
-                const cloudinaryCloudName = "dwjc4s71v";
-                const cloudinaryApiKey = "176474679379314";
-                const cloudinaryApiSecret = "YFgdiMOXqhvSobpeYMhqDYywj7A";
-        
-                // Check if Cloudinary is defined (loaded)
-                if (typeof cloudinary !== 'undefined') {
-                    const cld = new cloudinary.Cloudinary({ cloud_name: cloudinaryCloudName });
-        
-                    const cloudinaryUrl = cld.url();
-                    // Cloudinary upload API URL
-                    const apiUrl = `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/upload`;
-        
-                    // signing requests
-                    const signature = cld.utils.apiSignRequest(
-                        {
-                            timestamp: Math.floor(Date.now() / 1000),
-                        },
-                        cloudinaryApiSecret
-                    );
-        
-                    axios
-                        .post(apiUrl, formData, {
-                            headers: {
-                                "Content-Type": "multipart/form-data",
-                            },
-                            params: {
-                                api_key: cloudinaryApiKey,
-                                timestamp: Math.floor(Date.now() / 1000),
-                                signature: signature,
-                            },
-                        })
-                        .then((response) => {
-                            //correctly uploaded
-                            const imageUrl = response.data.secure_url;
-                            this.uploadedPhoto = imageUrl;
-                        })
-                        .catch((error) => {
-                            console.error("Error uploading image:", error);
-                        });
-                } else {
-                    console.error("Cloudinary script is not loaded.");
-                }
-            }
-        },
-        
+        // Create Cloudinary instance
+        const cld = cloudinary.Cloudinary.new({ cloud_name: cloudinaryCloudName, api_key: cloudinaryApiKey });
+
+        // Construct Cloudinary URL
+        const cloudinaryUrl = cld.url();
+
+        // Signing requests
+        const signature = cld.utils.apiSignRequest(
+            {
+                timestamp: Math.floor(Date.now() / 1000),
+            },
+            cloudinaryApiSecret
+        );
+
+        axios
+            .post(apiUrl, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                params: {
+                    api_key: cloudinaryApiKey,
+                    timestamp: Math.floor(Date.now() / 1000),
+                    signature: signature,
+                },
+            })
+            .then((response) => {
+                // correctly uploaded
+                const imageUrl = response.data.secure_url;
+                this.uploadedPhoto = imageUrl;
+            })
+            .catch((error) => {
+                console.error("Error uploading image:", error);
+            });
+    } else {
+        console.error("Cloudinary script is not loaded.");
+    }
+},
     
 
 
@@ -292,7 +284,7 @@ const app = Vue.createApp({
 
         initialize(){
             this.initializeMap();
-            this.getCurrentTime();
+            this.getCurrentTime(); 
             const date = new Date(); //now
             document.getElementById("date").value = date.toISOString().split('T')[0];
             document.getElementById("date").setAttribute('max', date.toISOString().split('T')[0]);
@@ -304,10 +296,12 @@ const app = Vue.createApp({
     
 
     },
+    
     mounted() {
         this.initialize();
         console.log('mounted');
-    },
+    }
+
 });
 
 

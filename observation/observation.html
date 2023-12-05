@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="fotos/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/cloudinary-core@2/cloudinary-core-shrinkwrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script src="https://unpkg.com/cloudinary-core@2.13.0/cloudinary-core-shrinkwrap.js" integrity="sha384-pKt67DRUd9fU1wsE6FzQ4JMvY/TFcfHlg4u02i4e7PBq6OH/utBZyABgcfQAbfep" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="observation.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
@@ -22,7 +23,7 @@
         
         <h2>New Observation</h2>
         <img src="../fotos/info.png" height="20" alt="Info" @click="showInfoPopup" id="infoIcon">
-
+        
         <div v-show="isInfoPopupVisible" class="popup">
             <span class="popup-content">Drag the map and hit "Choose on map," or hit "Use current location" to pick automatically</span>
             <span class="popup-close" @click="closeInfoPopup">×</span>
@@ -32,7 +33,7 @@
                 <label for="name">Observer: *</label>
                 <input type="text" class="form-control" id="name" placeholder="Name" required>
             </div>
-
+            
             <div class="form-group">
                 <label for="location">Location: *</label>  
                 
@@ -48,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-            
+                
                 <div class="form-group">
                     <label for="date">Observation Date:</label>
                     <input type="date" class="form-control" id="date" v-on:focusout="validateTime" value="" onkeydown="return false" required>
@@ -59,40 +60,40 @@
                 </div>
                 
                 <div class="form-group"></div>
-                    <label for="animalSearch">Search animal database: *</label>
-                    <input type="text" class="form-control" id="animalSearch" placeholder="Animal name">
-                    <button type="button" class="btn btn-primary" @click="searchAnimal" id="animalSearchBtn">Search</button>
-                </div>
-                
-                <div class="form-group">
-                    <label for="animalSeen">Observed animal: *</label>
-                    <select class="form-control" id="animalSeen"  required></select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="photo">Photo:*</label>
-                    <input type="file" accept=".png, .jpg, .jpeg, .heic" class="form-control-file" id="photo" @change="handlePhotoUpload">
-                    <img v-if="uploadedPhoto" :src="uploadedPhoto" alt="Uploaded Photo" style="max-width: 100%; margin-top: 10px;">
-                </div>
-        
-
-                <div class="form-group">
-                    <label for="note">Description (at most 1024 symbols)</label><br>
-                    <textarea v-model="note" @input="handleDescriptionInput" id="note" placeholder="Enter your description (Optional)" style="width: 100%" maxlength="1024"></textarea>
-                  </div>
-                
-                
-                
+                <label for="animalSearch">Search animal database: *</label>
+                <input type="text" class="form-control" id="animalSearch" placeholder="Animal name">
+                <button type="button" class="btn btn-primary" @click="searchAnimal" id="animalSearchBtn">Search</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="animalSeen">Observed animal: *</label>
+                <select class="form-control" id="animalSeen"  required></select>
+            </div>
+            
+            <div class="form-group">
+                <label for="photo">Photo:*</label>
+                <input type="file" accept=".png, .jpg, .jpeg, .heic" class="form-control-file" id="photo" @change="handlePhotoUpload">
+                <img v-if="uploadedPhoto" :src="uploadedPhoto" alt="Uploaded Photo" style="max-width: 100%; margin-top: 10px;">
+            </div>
+            
+            
+            <div class="form-group">
+                <label for="note">Description (at most 1024 symbols)</label><br>
+                <textarea v-model="note" @input="handleDescriptionInput" id="note" placeholder="Enter your description (Optional)" style="width: 100%" maxlength="1024"></textarea>
+            </div>
+            
+            
+            
             <button type="submit" id="submitBtn" class="btn btn-primary custom-submit-btn">Submit</button>
-
+            
             <button id="cancelBtn" class="btn btn-primary custom-cancel-btn" @click="cancelSubmission">Return</button>
-
+            
             <br><label for="note">* must be filled out</label>
         </form>
     </div>
-
-<script src="observation.js"></script>
     
-  
+    <script src="observation.js"></script>
+    
+    
 </body>
 </html>

@@ -4,6 +4,7 @@
     "start": "node observation/observation.js"
   },
   "dependencies": {
-    "@cloudinary/url-gen": "^1.13.0"
+    "@cloudinary/url-gen": "^1.13.0",
+    "cloudinary-core": "^2.13.0"
   }
 }
