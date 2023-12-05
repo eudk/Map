@@ -136,3 +136,26 @@ html, body {
     width: 50px; 
     height: 50px;
 } */
+
+
+.docs {
+    position: fixed;
+    bottom: -30px;
+    left: 10px;
+    width: 50px; 
+    height: 50px;
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+}
+
+
+.contact
+{
+    position: fixed;
+    bottom: -30px;
+    left: 50px;
+    width: 50px; 
+    height: 50px;
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+}
