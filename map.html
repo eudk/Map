@@ -22,27 +22,27 @@
         
         <div id="overlay">
             <div class="header">
-            <a href="../index.html">
-                <img src="fotos/logo.png" alt="Logo" class="logo">
-                <a href="/list/list.html">
-
-                    <img src="fotos/home.png" alt="home" class="home">
+                <a href="../index.html">
+                    <img src="fotos/logo.png" alt="Logo" class="logo">
+                    <a href="/list/list.html">
+                        
+                        <img src="fotos/user.png" alt="home" class="home">
+                        
+                        <img src="fotos/add.png" alt="add" class="add">
+                        <a href="/list/list.html">
+                            
+                            <img src="fotos/list.png" alt="list" class="list">
+                            <a href="/list/list.html">
+                            </a>
+                            <div class="form-group">
+                                <input type="text" placeholder="Search" v-model="animalFilter">
+                                <input type="submit" id="search" v-on:click="filterObservationsByAnimal">
+                                <button id="zoomin"  v-on:click="zoomCurrentLocation">{{ buttonText }}</button> <!-- Zoomer ind og saa skriver tilbage -->
+                </div>
+        </div>
+        </div>
         
-            </a>
-        </div>
-            <div class="form-group">
-                <input type="text" placeholder="Search" v-model="animalFilter">
-                <input type="submit" id="search" v-on:click="filterObservationsByAnimal">
-            </div>
-        </div>
-        
-        <div id="buttons-container">
-            <button id="zoomin" class="btn btn-success rounded-pill" v-on:click="zoomCurrentLocation">{{ buttonText }}</button> <!-- Zoomer ind og saa skriver tilbage -->
-            <button class="btn btn-success rounded-pill">My Profile</button>
-            <a href=observation/observation.html class="btn btn-success rounded-pill">New Observation</a>
-        </div>
-        <a href="infopages/documentation.html" class="documentation-link">docs</a>
-    </div>
+     
 
     <script src="map.js"></script>
     

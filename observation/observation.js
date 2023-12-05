@@ -79,7 +79,7 @@ const app = Vue.createApp({
             };
             xhr.send(body);
         },
-        submitForm() {
+       async submitForm() {
             try {
                 if (this.prettyCoordinates == null) {
                     alert('Please choose a location on the map');
@@ -101,7 +101,11 @@ const app = Vue.createApp({
                 observeDate.setMinutes(observeTime[1]);
                 const observeDateTime = observeDate.toISOString().slice(0, 19) //Convert to MySQL DateTime format
                 
-                const observationObject = {id:0, userName:observerName, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:null};
+
+                const imageId = await this.uploadImage(); // uploader billede og får id tilbage
+                console.log("imageid:" + imageId);
+
+                const observationObject = {id:0, userName:observerName, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:imageId};
                 this.postObservation(observationObject);
                 
                 console.log("NEW POST MADE");
@@ -155,6 +159,39 @@ const app = Vue.createApp({
         getCurrentLocation(){
             //TODO
         },
+
+
+        async uploadImage(event) {
+          
+            const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/images/`;
+             
+            var data = event.target.files[0]; // 1 file object
+                
+            var formData = new FormData();
+            formData.append("data", data);
+            
+            axios.post(unitUrl, formData)
+            .then(
+                response => {
+                    console.log('image upload response > ', response)
+                    alert("Image uploaded :)");
+                    console.log(response.data);
+
+                    return response.data;
+
+                }
+                
+                
+            ).catch(
+                error => {
+                    console.log('image upload error > ', error)
+                    alert("Image upload failed :(");
+            });
+           
+
+        },
+
+
 
         getPinLocation() {
             
