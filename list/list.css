@@ -94,37 +94,9 @@ html, body {
     margin: 0 5px; 
 }
 
-.table
+#table,th,td
 {
-    border: none;
-    outline: none;
+    border: 1px solid black;
     border-collapse: collapse;
-    margin: -5px;
-    border-width: 0px;
-    border-bottom: 0px solid #ffffff00;
-    border-top: 0px solid #ffffff00;
-}
-
-th, td{
-    background-color: rgb(255, 255, 255);
-}
-
-tr:nth-child(even) td:nth-child(1){
-    background-color: rgb(212, 252, 252);
-}
-
-tr:nth-child(even) td:nth-child(2){
-    background-color: rgb(212, 252, 252);
-}
-
-tr:nth-child(even) td:nth-child(3){
-    background-color: rgb(212, 252, 252);
-}
-
-tr:nth-child(even) td:nth-child(4){
-    background-color: rgb(212, 252, 252);
-}
-
-td:nth-child(5), th:nth-child(5) {
-    background-color: #00000000;
+    border-bottom: 1px solid #ddd
 }

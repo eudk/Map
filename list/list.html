@@ -18,23 +18,19 @@
         </div>
 
         <div>
-            <table class="table">
+            <table class="table" style="background-color: azure;">
                 <thead>
                     <td>AnimalName</td>
                     <td>UserName</td>
                     <td>Date</td>
                     <td>Time</td>
-                    <td></td>
 
                 </thead>
-                <tbody>
-                    <tr v-for="observation in observations">
-                        <td>{{observation.animalName}}</td>
-                        <td>{{observation.userName}}</td>
-                        <td>{{observation.date.split('T')[0]}}</td>
-                        <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
-                        <td><button v-bind:id="observation.id" class="btn btn-success rounded-pill" @click="goto(observation.id)">View Details</button></td>
-                    </tr>
+                <tbody v-for="observation in observations">
+                    <td> {{observation.animalName}}</td>
+                    <td>{{observation.userName}}</td>
+                    <td>{{observation.date.split('T')[0]}}</td>
+                    <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
                 </tbody>
             </table>
         </div>
