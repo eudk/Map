@@ -100,3 +100,13 @@ html, body {
     border-collapse: collapse;
     border-bottom: 1px solid #ddd
 }
+
+
+.logo {
+    position: fixed;
+    top: 4px;
+    right: 10px;
+    width: 55px; 
+    height: 60px;
+}
+
