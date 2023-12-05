@@ -3,13 +3,13 @@ const baseurl="https://naturdanmark-api20231124193012.azurewebsites.net"
 const app = Vue.createApp({
     data() {
         return {
-            observationid:119,
             observation:[],
         };
     },
-    async mounted()
+    async created()
     {
-        this.GetData(baseurl, observationid)
+        tempid = sessionStorage.getItem('id')
+        this.GetData(baseurl, tempid)
     },
     methods: {
         async GetData(url, id)
