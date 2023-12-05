@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="fotos/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/cloudinary-core@2.13.0/cloudinary-core-shrinkwrap.js" integrity="sha384-pKt67DRUd9fU1wsE6FzQ4JMvY/TFcfHlg4u02i4e7PBq6OH/utBZyABgcfQAbfep" crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="observation.css">
@@ -60,30 +58,30 @@
                 </div>
                 
                 <div class="form-group"></div>
-                <label for="animalSearch">Search animal database: *</label>
-                <input type="text" class="form-control" id="animalSearch" placeholder="Animal name">
-                <button type="button" class="btn btn-primary" @click="searchAnimal" id="animalSearchBtn">Search</button>
-            </div>
-            
-            <div class="form-group">
-                <label for="animalSeen">Observed animal: *</label>
-                <select class="form-control" id="animalSeen"  required></select>
-            </div>
-            
-            <div class="form-group">
-                <label for="photo">Photo:*</label>
-                <input type="file" accept=".png, .jpg, .jpeg, .heic" class="form-control-file" id="photo" @change="handlePhotoUpload">
-                <img v-if="uploadedPhoto" :src="uploadedPhoto" alt="Uploaded Photo" style="max-width: 100%; margin-top: 10px;">
-            </div>
-            
-            
-            <div class="form-group">
-                <label for="note">Description (at most 1024 symbols)</label><br>
-                <textarea v-model="note" @input="handleDescriptionInput" id="note" placeholder="Enter your description (Optional)" style="width: 100%" maxlength="1024"></textarea>
-            </div>
-            
-            
-            
+                    <label for="animalSearch">Search animal database: *</label>
+                    <input type="text" class="form-control" id="animalSearch" placeholder="Animal name">
+                    <button type="button" class="btn btn-primary" @click="searchAnimal" id="animalSearchBtn">Search</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="animalSeen">Observed animal: *</label>
+                    <select class="form-control" id="animalSeen"  required></select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="photo">Photo:*</label>
+                    <input type="file" accept=".png, .jpg, .jpeg, .heic" class="form-control-file" id="photo" @change="handlePhotoUpload">
+                    <img v-if="uploadedPhoto" :src="uploadedPhoto" alt="Uploaded Photo" style="max-width: 100%; margin-top: 10px;">
+                </div>
+        
+
+                <div class="form-group">
+                    <label for="note">Description (at most 1024 symbols)</label><br>
+                    <textarea v-model="note" @input="handleDescriptionInput" id="note" placeholder="Enter your description (Optional)" style="width: 100%" maxlength="1024"></textarea>
+                  </div>
+                
+                
+                
             <button type="submit" id="submitBtn" class="btn btn-primary custom-submit-btn">Submit</button>
             
             <button id="cancelBtn" class="btn btn-primary custom-cancel-btn" @click="cancelSubmission">Return</button>
