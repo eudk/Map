@@ -2,13 +2,13 @@ const app = Vue.createApp({
     data() {
         return {
             map: null,
-            longitude : null,
-            latitude : null,
-            prettyCoordinates : null,
-            note : null,
-            cityName: null ,
-            isInfoPopupVisible: false
-
+            longitude: null,
+            latitude: null,
+            prettyCoordinates: null,
+            note: null,
+            cityName: null,
+            isInfoPopupVisible: false,
+            uploadedPhoto: null 
         };
     },
     methods: {
@@ -79,44 +79,44 @@ const app = Vue.createApp({
             };
             xhr.send(body);
         },
-       async submitForm() {
+        
+        
+        
+        async submitForm(event) {
             try {
                 if (this.prettyCoordinates == null) {
                     alert('Please choose a location on the map');
                     return;
                 }
-        
+
                 const observerName = document.getElementById('name').value;
-                const observedAnimal = document.getElementById('animalSeen').value;
-                
-                const observeDate = new Date(document.getElementById('date').value);
-                const observeTime = document.getElementById('time').value.split(':');
-                if(observeTime[2] == 'PM' && observeTime[0] != 12){
-                    observeTime[0] += 12;
-                }
-                if(observeTime[2] == 'AM' && observeTime[0] == 12){
-                    observeTime[0] -= 12;
-                } 
-                observeDate.setHours(observeTime[0]);
-                observeDate.setMinutes(observeTime[1]);
-                const observeDateTime = observeDate.toISOString().slice(0, 19) //Convert to MySQL DateTime format
-                
+        const observedAnimal = document.getElementById('animalSeen').value;
 
-                const imageId = await this.uploadImage(); // uploader billede og får id tilbage
-                console.log("imageid:" + imageId);
+        const observeDate = new Date(document.getElementById('date').value);
+        const observeTime = document.getElementById('time').value.split(':');
+        if (observeTime[2] == 'PM' && observeTime[0] != 12) {
+            observeTime[0] += 12;
+        }
+        if (observeTime[2] == 'AM' && observeTime[0] == 12) {
+            observeTime[0] -= 12;
+        }
+        observeDate.setHours(observeTime[0]);
+        observeDate.setMinutes(observeTime[1]);
+        const observeDateTime = observeDate.toISOString().slice(0, 19); // Convert to MySQL DateTime format
 
-                const observationObject = {id:0, userName:observerName, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:imageId};
+        const imageId = await this.uploadImage(event); // Pass event parameter
+        console.log("imageid:" + imageId);
+
+        const observationObject = {id:0, userName:observerName, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:imageId};
                 this.postObservation(observationObject);
                 
                 console.log("NEW POST MADE");
             } catch (error) {
                 console.error("Error submitting form:", error);
-                // You can also display an alert or perform other error-handling actions if needed
             }
-            
-            //return false;
-        },
+},
 
+        
         handleDescriptionInput() {
             if (this.note.length > 1024) {
               alert('Description cannot exceed 1024 characters.');
@@ -156,40 +156,47 @@ const app = Vue.createApp({
             this.map = map;
         },
 
+
+
         getCurrentLocation(){
             //TODO
         },
 
 
-        async uploadImage(event) {
-          
-            const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/images/`;
-             
-            var data = event.target.files[0]; // 1 file object
-                
-            var formData = new FormData();
-            formData.append("data", data);
-            
-            axios.post(unitUrl, formData)
-            .then(
-                response => {
-                    console.log('image upload response > ', response)
-                    alert("Image uploaded :)");
-                    console.log(response.data);
 
-                    return response.data;
 
-                }
-                
-                
-            ).catch(
-                error => {
-                    console.log('image upload error > ', error)
-                    alert("Image upload failed :(");
-            });
-           
 
+        handlePhotoUpload(event) {
+            this.uploadImage(event);
         },
+
+        async uploadImage(event) {
+            try {
+                const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/image/`; // korrekt link bekræftet
+        
+                const data = event.target.files[0];
+        
+                const formData = new FormData();
+                formData.append("data", data);
+        
+                const response = await axios.post(API_URL, formData, {
+                    headers: {
+                      'Content-Type': 'application/json', // data eller json jeg ved ikke 
+                    },
+                  });
+        
+                console.log('image upload response > ', response);
+                alert("Image uploaded :)");
+                console.log(response.data);
+        
+                return response.data;
+            } catch (error) {
+                console.error('image upload error > ', error);
+                alert("Image upload failed :(");
+                throw error; // rethrow  error
+            }
+        },
+
 
 
 
@@ -281,13 +288,11 @@ const app = Vue.createApp({
     
 
     },
-    
+
     mounted() {
         this.initialize();
         console.log('mounted');
     }
-
 });
-
 
 app.mount('#app');
