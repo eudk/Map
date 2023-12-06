@@ -172,28 +172,33 @@ const app = Vue.createApp({
 
         async uploadImage(event) {
             try {
-                const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/image/`; // korrekt link bekræftet
+                const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/Image/`; // korrekt link bekræftet
         
-                const data = event.target.files[0];
-        
-                const formData = new FormData();
-                formData.append("data", data);
-        
-                const response = await axios.post(API_URL, formData, {
+                const image = event.target.files[0];
+
+                const toBase64 = file => new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = reject;
+                });
+                
+                const dataString = await toBase64(image);
+                
+                const imageObject = '{"oberservationID":0,"foto":"' + dataString + '}';
+                
+                const response = await axios.post(API_URL, imageObject, {
                     headers: {
-                      'Content-Type': 'application/json', // data eller json jeg ved ikke 
+                    'Content-Type': 'application/json',
                     },
-                  });
+                });
         
                 console.log('image upload response > ', response);
-                alert("Image uploaded :)");
-                console.log(response.data);
-        
-                return response.data;
+
             } catch (error) {
                 console.error('image upload error > ', error);
                 alert("Image upload failed :(");
-                throw error; // rethrow  error
+                throw error;
             }
         },
 
