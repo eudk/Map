@@ -12,15 +12,14 @@ html, body {
 }
 
 .container {
-    width: 100%;
-    max-width: 650px;
-    padding: 20px;
+    width: 250%;
+    padding: 30px;
     border-radius: 15px;
-    background-color: rgba(177, 176, 176, 0.7); 
-    backdrop-filter: blur(7px); 
+    background-color: rgba(220, 206, 206, 0.7);
+    backdrop-filter: blur(7px);
     margin-top: 20px;
     margin-bottom: 30px;
-    overflow: hidden; /* Hide  map overflow */
+    overflow: hidden;
 }
 
 #map-container {
@@ -98,7 +97,7 @@ html, body {
 .logo {
     position: fixed;
     top: 10px;
-    right: 10px;
+    left: 10px;
     width: 50px; 
     height: auto;
 }
