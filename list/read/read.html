@@ -20,9 +20,7 @@
                 </a>
             </div>
 
-            <h1 class="invis">_</h1>
-
-            # BILLEDE HER # <br>
+            <img v-if="image" :src="image" alt="Uploaded Photo" style="max-width: 80%; margin-top: 10px;">
 
             {{observation.animalName}}<br>
             Observeret af {{observation.userName}} på {{observation.date.split('T')[0]}}, kl. {{observation.date.split('T')[1].slice(0,5)}}<br>
