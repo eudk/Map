@@ -44,15 +44,21 @@ const app = Vue.createApp({
                             <strong>Date:</strong> ${dateTime[0]}<br>
                             <strong>Time:</strong> ${dateTime[1]}<br>
                             <strong>Description:</strong> ${observation.description || ''}
-                            <a href="list/read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(${observation.id})">Details</a>
+                            <a href="../read/read.html" class="btn btn-success rounded-pill" id="details-${observation.id}">Details</a>
                         `;
-
+                    
                         const marker = L.marker([observation.latitude, observation.longitude]);
                         marker.bindPopup(markerContent);
                         this.map.addLayer(marker);
                         this.markers.push(marker);
+                    
+                        marker.on('popupopen', () => {
+                            const detailsLink = document.getElementById(`details-${observation.id}`);
+                            detailsLink.addEventListener('click', () => {
+                                this.getid(observation.id);
+                            });
+                        });
                     });
-
                     this.map.setView([56.2639, 9.5018], 7);
                 })
                 .catch(error => {
