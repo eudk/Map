@@ -7,6 +7,7 @@ const app = Vue.createApp({
             buttonText: 'Zoom In', // skal bruge ellers skifter den ikke navn
             animalFilter: null,
             loading: true, 
+            image: null
                 };
     },
 
@@ -40,6 +41,8 @@ const app = Vue.createApp({
                     observations.forEach(observation => {
                         const dateTime = observation.date.split('T');
                         const markerContent = `
+                        <img v-if="image" :src="image" alt="Uploaded Photo" style="max-width: 50px; margin-top: 10px;"> <br>
+
                             <strong>Animal Name:</strong> ${observation.animalName}<br>
                             <strong>Date:</strong> ${dateTime[0]}<br>
                             <strong>Time:</strong> ${dateTime[1]}<br>
@@ -53,6 +56,8 @@ const app = Vue.createApp({
                         this.markers.push(marker);
                     
                         marker.on('popupopen', () => {
+                        
+                            this.GetData(this.baseurl,observation.id)
                             const detailsLink = document.getElementById(`details-${observation.id}`);
                             detailsLink.addEventListener('click', () => {
                                 this.getid(observation.id);
@@ -69,6 +74,24 @@ const app = Vue.createApp({
                 });
 
 
+      },
+
+      async GetData(url, id)
+      {
+          try
+          {
+              var response = await axios.get(url +"/Api/Observation/" + id)
+              this.observation = response.data
+              console.log(this.observation.id)
+              response = await axios.get(url +"/Api/Image?id=" + this.observation.id)
+              this.image = response.data.photo
+              console.log(response.data.photo)
+          }
+          catch(ex)
+          {
+          console.log( ex.message)
+          }
+          
       },
     
 
