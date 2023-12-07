@@ -34,10 +34,10 @@ const app = Vue.createApp({
         fetchObservations() {
             const API_URL = 'https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation';
         
-            axios.get(API_URL)
+            axios.get(API_URL, { params: { 'amount': 50, 'sortMethod': 'datedesc' } }) //50 observations limit
                 .then(response => {
-                    const observations = response.data.slice(0, 50); // 50 observations limit map
-                    observations.forEach(observation => {
+                    const observations = response.data;
+                        observations.forEach(observation => {
                         const dateTime = observation.date.split('T');
 
                         const marker = L.marker([observation.latitude, observation.longitude]);
