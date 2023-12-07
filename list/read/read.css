@@ -12,7 +12,7 @@ html, body {
 }
 
 .container {
-    width: 250%;
+    width: 350%;
     padding: 30px;
     border-radius: 15px;
     background-color: rgba(220, 206, 206, 0.7);
@@ -100,4 +100,12 @@ html, body {
     left: 10px;
     width: 50px; 
     height: auto;
+}
+
+.invis {
+    visibility: hidden; 
+    color: transparent; 
+    color: rgba(x, x, x, 0);
+    color: hsla(x, x, x, 0);
+    opacity: 0; 
 }

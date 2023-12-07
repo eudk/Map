@@ -14,17 +14,21 @@
 <body>
     <div id="overlay">
         <div id="app" class="container mt-5">
-            <div class="header d-flex justify-content-between align-left">
+            <div class="header d-flex justify-content-between align-items-center">
                 <a href="../../index.html">
                     <img src="../../fotos/logo.png" alt="Logo" class="logo">
                 </a>
             </div>
+
+            <h1 class="invis">_</h1>
 
             # BILLEDE HER # <br>
 
             {{observation.animalName}}<br>
             Observeret af {{observation.userName}} på {{observation.date.split('T')[0]}}, kl. {{observation.date.split('T')[1].slice(0,5)}}<br>
             {{observation.description}}<br>
+
+            <h1 class="invis">_</h1>
 
             <div>
                 <a href="../list.html">Tilbage</a>
