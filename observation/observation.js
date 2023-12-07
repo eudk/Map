@@ -165,44 +165,61 @@ const app = Vue.createApp({
 
 
 
-
-        handlePhotoUpload(event) {
-            this.uploadImage(event);
+        async handlePhotoUpload(event) {
+            if (event && event.target && event.target.files && event.target.files.length > 0) {
+                const image = event.target.files[0];
+                const dataString = await this.toBase64(image);
+                this.uploadedPhoto = dataString;
+    
+                // Call  uploadImage 
+                await this.uploadImage(event);
+            } else {
+                console.error('no files selected. or issues');
+            }
         },
-
+        
         async uploadImage(event) {
             try {
-                const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/Image/`; // korrekt link bekræftet
-        
+                const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/Image/`;
+    
                 const image = event.target.files[0];
-        
+    
                 const toBase64 = file => new Promise((resolve, reject) => {
                     const reader = new FileReader();
                     reader.readAsDataURL(file);
                     reader.onload = () => resolve(reader.result);
                     reader.onerror = reject;
                 });
-        
+    
                 const dataString = await toBase64(image);
-        
+    
                 // Log the base64-encoded image data
                 console.log('dataString:', dataString);
-        
+    
                 const imageObject = '{"oberservationID":0,"foto":"' + dataString + '}';
-        
+    
                 const response = await axios.post(API_URL, imageObject, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
-        
+    
                 console.log('image upload response > ', response);
-        
+    
             } catch (error) {
                 console.error('image upload error > ', error);
                 alert("Image upload failed :(");
                 throw error;
             }
+        },
+    
+        toBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
         },
         
 
