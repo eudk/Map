@@ -4,6 +4,7 @@ const app = Vue.createApp({
     data() {
         return {
             observation:[],
+            image:null
         };
     },
     async created()
@@ -17,17 +18,26 @@ const app = Vue.createApp({
             try
             {
                 console.log("z")
-                const response = await axios.get(url +"/Api/Observation/" + id)
+                var response = await axios.get(url +"/Api/Observation/" + id)
                 console.log("a")
                 this.observation = response.data
                 console.log("b")
+                console.log(this.observation.id)
+                response = await axios.get(url +"/Api/Image?id=" + this.observation.id)
+                this.image = response.data.photo
+                console.log(response.data.photo)
+
+
             }
             catch(ex)
             {
-                alert(ex.message)
+            console.log( ex.message)
             }
             
         },
+
+
+
     },
 });
 
