@@ -20,7 +20,7 @@ const app = Vue.createApp({
             console.log("searched")
 
         },
-        async CreatedAnimal(url,amount=this.setamount)
+        async CreatedToday(url,amount=this.setamount)
         {
             try
             {
