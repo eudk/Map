@@ -29,8 +29,8 @@
                     <table class="table table-bordered table-hover">
                         <thead class="thead">
                             <tr>
-                                <th>AnimalName</th>
-                                <th>UserName</th>
+                                <th>Animal</th>
+                                <th>User</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Details</th>
@@ -38,6 +38,7 @@
                         </thead>
                         <tbody v-for="observation in observations" :key="observation.id">
                             <tr>
+                                <td hidden>{{observation.id}}</td>
                                 <td>{{observation.animalName}}</td>
                                 <td>{{observation.userName}}</td>
                                 <td>{{observation.date.split('T')[0]}}</td>
