@@ -21,7 +21,12 @@
 
         <h5 class="invis">_</h5>
 
-        <img v-if="image" :src="image" alt="Uploaded Photo" style="max-width: 80%; margin-top: 10px;">
+        <img v-if="image" :src="image" alt="Uploaded Photo" style="max-width: 80%; margin-top: 10px;"> <br>
+        <h3>Animal Observed: {{observation.animalName}}</h3><br>
+        <h3>Observered by: {{observation.userName}}</h3><br>
+        <h3>Date: {{observation.date.split('T')[0]}}</h3><br>
+        <h3>Time: {{observation.date.split('T')[1].slice(0,5)}}</h3><br>
+        <h3>Description: {{observation.description}}</h3><br>
 
         {{observation.animalName}}<br>
         Observeret af {{observation.userName}} på {{observation.date.split('T')[0]}}, kl. {{observation.date.split('T')[1].slice(0,5)}}<br>
@@ -30,7 +35,7 @@
         <h1 class="invis">_</h1>
 
         <div>
-            <a href="../list.html">Tilbage</a>
+            <a href="../index.html">Back to map</a>
         </div>
 
     </div>

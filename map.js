@@ -46,7 +46,7 @@ const app = Vue.createApp({
                             await this.GetData("https://naturdanmark-api20231124193012.azurewebsites.net", observation.id);
 
                             const markerContent = `                           
-                            <img src="${this.image}" style="max-width: 80%; margin-top: 10px;"> <br>                          
+                            <img src="${this.image}" alt = "This observation has no photo" style="max-width: 80%; margin-top: 10px;"> <br>                          
                             <strong>Animal Name:</strong> ${observation.animalName}<br>
                             <strong>Date:</strong> ${dateTime[0]}<br>
                             <strong>Time:</strong> ${dateTime[1]}<br>
