@@ -36,16 +36,15 @@ const app = Vue.createApp({
         
             axios.get(API_URL)
                 .then(response => {
-                    const observations = response.data;
-
+                    const observations = response.data.slice(0, 50); // 50 observations limit map
                     observations.forEach(observation => {
                         const dateTime = observation.date.split('T');
-                    
+
                         const marker = L.marker([observation.latitude, observation.longitude]);
-                        
+
                         marker.on('mouseover', async () => {
-                            await this.GetData("https://naturdanmark-api20231124193012.azurewebsites.net",observation.id);
-                            
+                            await this.GetData("https://naturdanmark-api20231124193012.azurewebsites.net", observation.id);
+
                             const markerContent = `                           
                             <img src="${this.image}" style="max-width: 80%; margin-top: 10px;"> <br>                          
                             <strong>Animal Name:</strong> ${observation.animalName}<br>
@@ -53,12 +52,12 @@ const app = Vue.createApp({
                             <strong>Time:</strong> ${dateTime[1]}<br>
                             <strong>Description:</strong> ${observation.description || ''}
                             <a href="list/read/read.html" class="btn btn-success rounded-pill" id="details-${observation.id}">Details</a>`;
-                            
-                            
+
+
                             marker.bindPopup(markerContent);
                         });
-                        
-                        marker.on('popupopen', () => {                           
+
+                        marker.on('popupopen', () => {
                             const detailsLink = document.getElementById(`details-${observation.id}`);
                             detailsLink.addEventListener('click', () => {
                                 this.getid(observation.id);
