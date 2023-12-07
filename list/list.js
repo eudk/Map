@@ -34,21 +34,6 @@ const app = Vue.createApp({
                 alert(ex.message)
             }
         },
-        
-        // async CreatedByUser(url,amount=this.setamount)
-        // {   
-        //     try 
-        //     {
-        //         this.setamount=amount
-        //         const response= await axios.get(url+"/Api/Observation?sortMethod=datedesc&amount="+this.setamount + "&UserName" + this.searchString)
-        //         this.observations=response.data
-        //         console.log("data created")
-        //     }
-        //     catch(ex)
-        //     {
-        //         alert(ex.message)
-        //     }
-        // },
 
         getid(tempid){
 
