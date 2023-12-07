@@ -22,30 +22,37 @@
         
         <div id="overlay">
             <div class="header">
-            <a href="../index.html">
-                <img src="fotos/logo.png" alt="Logo" class="logo">
-                <a href="/list/list.html">
+                <a href="index.html">
+                    <img src="fotos/logo.png" alt="Logo" class="logo">
+                </a>
 
-                    <img src="fotos/home.png" alt="home" class="home">
-        
-            </a>
-        </div>
-            <div class="form-group">
-                <input type="text" placeholder="Search" v-model="animalFilter">
-                <input type="submit" id="search" v-on:click="filterObservationsByAnimal">
+                <a href="index.html">
+                            <img src="fotos/user.png" alt="user" class="user">
+                        </a>
+
+                        <a href="/observation/observation.html">
+                            <img src="fotos/add.png" alt="add" class="add">
+                        </a>
+                        
+                        <a href="/list/list.html">
+                            <img src="fotos/list.png" alt="list" class="list">
+                            
+                        </a>
+                        <a href="mailto:mail@mail.com" class="contact">contact</a> <!-- CONTACT LINK -->
+                            <a href="/docs.html" class="docs">docs</a> <!-- DOCS LINK -->
             </div>
-        </div>
-        
-        <div id="buttons-container">
-            <button id="zoomin" class="btn btn-success rounded-pill" v-on:click="zoomCurrentLocation">{{ buttonText }}</button> <!-- Zoomer ind og saa skriver tilbage -->
-            <button class="btn btn-success rounded-pill">My Profile</button>
-            <a href=observation/observation.html class="btn btn-success rounded-pill">New Observation</a>
-        </div>
-        <a href="infopages/documentation.html" class="documentation-link">docs</a>
-    </div>
 
-    <script src="map.js"></script>
-    
-</body>
+                            
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Search" v-model="animalFilter">
+                                            <input type="submit" id="search" v-on:click="filterObservationsByAnimal">
+                            <!--                                 <button id="zoomin"  v-on:click="zoomCurrentLocation">{{ buttonText }}</button> --->
+                                        </div>
+                                    </div>
+                                </div>
+                                 
+                                <script src="map.js"></script>
+                                
+                            </body>
 
-</html>
+                            </html>

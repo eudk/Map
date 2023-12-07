@@ -6,37 +6,50 @@
     <title>NaturDanmark</title>
     <link rel="shortcut icon" type="image/x-icon" href="fotos/logo.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="list.css">
+    <link rel="stylesheet" href="list.css"> 
     <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
 </head>
 <body>
-    <div id="app">
-        <div class="form-group" id="controls">
-            <input type="text" id="searchText" placeholder="Search" v-model="searchString">
-            <input type="submit" id="search" v-on:click="submit">
-        </div>
-
-        <div>
-            <table class="table" style="background-color: azure;">
-                <thead>
-                    <td>AnimalName</td>
-                    <td>UserName</td>
-                    <td>Date</td>
-                    <td>Time</td>
-
-                </thead>
-                <tbody v-for="observation in observations">
-                    <td> {{observation.animalName}}</td>
-                    <td>{{observation.userName}}</td>
-                    <td>{{observation.date.split('T')[0]}}</td>
-                    <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
-                    <td><a href=read/read.html class="btn btn-success rounded-pill" v-on:click="getid(observation.id)">Details</a></td>
-                </tbody>
-            </table>
+    <div id="overlay">
+        <div id="app" class="container mt-5">
+            <div class="header d-flex justify-content-between align-items-center">
+                <a href="../index.html">
+                    <img src="../fotos/logo.png" alt="Logo" class="logo">
+                </a>
+                <div class="form-group" id="controls">
+                    <input type="text" id="searchText" placeholder="Search" v-model="searchString" class="form-control">
+                    <input type="submit" class="btn btn-success rounded-pill" v-on:click="submit">
+                    <a>scroll for details</a>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead">
+                            <tr>
+                                <th>AnimalName</th>
+                                <th>UserName</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="observation in observations" :key="observation.id">
+                            <tr>
+                                <td>{{observation.animalName}}</td>
+                                <td>{{observation.userName}}</td>
+                                <td>{{observation.date.split('T')[0]}}</td>
+                                <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
+                                <td><a href="read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(observation.id)">Details</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     <script src="list.js"></script>
 </body>
 </html>
-

@@ -12,23 +12,28 @@
 </head>
 
 <body>
-    <div id="app">
-        <div>
-            <table class="table" style="background-color: azure;">
-                <thead>
-                    <td>AnimalName</td>
-                    <td>UserName</td>
-                    <td>Date</td>
-                    <td>Time</td>
-                </thead>
-                <tbody>
-                    <td>{{observation.animalName}}</td>
-                    <td>{{observation.userName}}</td>
-                    <td>{{observation.date.split('T')[0]}}</td>
-                    <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
-                    <td>{{observation.description}}</td>
-                </tbody>
-            </table>
+    <div id="overlay">
+        <div id="app" class="container mt-5">
+            <div class="header d-flex justify-content-between align-items-center">
+                <a href="../../index.html">
+                    <img src="../../fotos/logo.png" alt="Logo" class="logo">
+                </a>
+            </div>
+
+            <h1 class="invis">_</h1>
+
+            # BILLEDE HER # <br>
+
+            {{observation.animalName}}<br>
+            Observeret af {{observation.userName}} på {{observation.date.split('T')[0]}}, kl. {{observation.date.split('T')[1].slice(0,5)}}<br>
+            {{observation.description}}<br>
+
+            <h1 class="invis">_</h1>
+
+            <div>
+                <a href="../list.html">Tilbage</a>
+            </div>
+
         </div>
     </div>
     <script src="read.js"></script>

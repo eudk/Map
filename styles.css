@@ -97,16 +97,65 @@ html, body {
 
 .logo {
     position: fixed;
-    top: 10px;
+    top: 4px;
     right: 10px;
-    width: 50px; 
-    height: auto;
+    width: 55px; 
+    height: 60px;
 }
 
-.home {
+.user {
     position: fixed;
-    top: 10px;
-    right: 60px;
+    top: 64px;
+    right: 10px;
     width: 50px; 
-    height: auto;
+    height: 50px;
+}
+
+.add {
+    position: fixed;
+    top: 116px;
+    right: 10px;
+    width: 50px; 
+    height: 50px;
+}
+
+.list {
+    position: fixed;
+    top: 164px;
+    right: 10px;
+    width: 50px; 
+    height: 50px;
+}
+
+/* #zoomin {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    top: 10px;
+    right: 300px;
+    width: 50px; 
+    height: 50px;
+} */
+
+
+.docs {
+    position: fixed;
+    bottom: -30px;
+    left: 10px;
+    width: 50px; 
+    height: 50px;
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+}
+
+
+.contact
+{
+    position: fixed;
+    bottom: -30px;
+    left: 50px;
+    width: 50px; 
+    height: 50px;
+    color: rgb(0, 0, 0);
+    font-size: 10px;
 }

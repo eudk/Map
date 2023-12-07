@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Documentation</title>
+    <style>
+        h1 {
+            font-weight: bold;
+        }
+
+        pre {
+      background-color: #150d0d;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      white-space: pre-wrap; /* Preserve line breaks */
+      font-family: 'Courier New', monospace;
+    }
+
+    code {
+      color: #ded8d8;
+    }
+    </style>
+</head>
+<body>
+    <h1>Map</h1>
+    <p>Map and Observation for NaturDanmark projekt. Coordinate API, Map API, REST, Coordinate to City API used</p>
+
+    <a href="../map.html">
+        <img src="../fotos/logo.png" alt="logo" style="height: 200px;">
+    </a>
+    <hr>
+    <h3>3. semester projekt</h3>
+    <ul>
+        <li>
+        Implementering af Raspberry Pi med GPS sensor og sende data tilbage
+        </li>
+    <hr>
+    <a href="../map.html">Go back</a>
+
+    <h2>Implemented with Vue JS, Bootstrap</h2>
+
+    <h3>API's used</h3>
+    <ul>
+        <li>
+            Animals API: (Limited to 10.000 free API calls/month)
+            <a href="https://api-ninjas.com/api/animals">https://api-ninjas.com/api/animals</a>
+        </li>
+        <li>
+            Map API & external JS: (Unlimited use)
+            <a href="https://leafletjs.com/index.html">https://leafletjs.com/index.html</a>
+        </li>
+        <li>
+            API for converting coordinates to cities: (Unlimited use)
+            <a href="https://www.bigdatacloud.com/free-api/free-reverse-geocode-to-city-api">https://www.bigdatacloud.com/free-api/free-reverse-geocode-to-city-api</a>
+        </li>
+        <li>
+            Own REST service for Animal Observations: (Unlimited use)
+            <a href="https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation">https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation</a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <ul>
+    <h3>Previews</h3>
+    <img src="../fotos/gitpreview/preview1.png" alt="preview1" style="height: 500px;">
+    <img src="../fotos/gitpreview/preview2.png" alt="preview2" style="height: 500px;">
+
+    </ul>
+    <ul>
+    <h3>API use example</h3>
+    
+    <p>Example of a styled code block:</p>
+    <P>Metode til data fra dyreapi og vist som liste</P>
+    <pre>
+        <code>
+            // Metode til data fra dyreapi og vist som liste 
+            searchAnimal() {
+                const inputElement = document.getElementById('animalSearch');
+                const animalName = inputElement.value;
+    
+                if (animalName.trim() !== '') {
+                    const apiKey = 'CENSORED'; // API key ændr her hvis det er 
+                    const apiUrl = `https://api.api-ninjas.com/v1/animals?name=${animalName}`;
+                   
+                    axios.get(apiUrl, { headers: { 'X-Api-Key': apiKey } })
+                        .then(response => {
+                            const animals = response.data;
+    
+                            const animalSeenSelect = document.getElementById('animalSeen');
+                            animalSeenSelect.innerHTML = '';
+    
+                            animals.forEach(animal => {
+                                const option = document.createElement('option');
+                                option.value = animal.name;
+                                option.text = animal.name;
+                                animalSeenSelect.appendChild(option);
+                            });
+                         
+                        })
+                        .catch(error => {
+                            // måske noget til fejl kan ikke få den til at virke
+                        });
+                } else {
+                    alert('Enter the name of the animal');
+                }
+            },
+        </code>
+    </pre>
+</ul>
+</body>
+</html>

@@ -25,8 +25,7 @@ html, body {
 
 #map-container {
     flex: 1;
-    width: 150%;
-    margin-left: -28%; /* map fix for større container men dårligt på mobil nu */
+    width: 100%;
 }
 
 #map {
@@ -94,11 +93,17 @@ html, body {
     margin: 0 5px; 
 }
 
-
 .logo {
     position: fixed;
-    top: 10px;
+    top: 4px;
     right: 10px;
-    width: 50px; 
-    height: auto;
+    width: 55px; 
+    height: 60px;
+}
+
+
+
+.uploaded-photo {
+    max-width: 10px;
+    margin-top: 10px;
 }
