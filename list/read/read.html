@@ -28,14 +28,21 @@
         <h6>Time: {{observation.date.split('T')[1].slice(0,5)}}</h6><br>
         <h6>Description: {{observation.description}}</h6><br>
         <h6>Location: {{ getLocation() }}</h6>
-        <h6>Coordinates: {{ getFormattedCoordinates() }}</h6>
+        <h6>Coordinates: {{ getFormattedCoordinates() }}</h6> <br> <br> <br>
 
         <h1 class="invis">_</h1>
 
-        <div>
-            <a href="../list.html">Back to list</a>
-            <a href="../../index.html">Back to map</a>
+        <div id="icondiv">
+            <a href="../list.html" id="listicon">
+                <img src="../../fotos/list.png" alt="Back to list">
+                <span>List</span>
+            </a>
+            <a href="../../index.html" id="mapicon">
+                <img src="../../fotos/map.png" alt="Back to map">
+                <span>Map</span>
+            </a>
         </div>
+        
 
     </div>
     <script src="read.js"></script>
