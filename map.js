@@ -44,7 +44,7 @@ const app = Vue.createApp({
                             <strong>Date:</strong> ${dateTime[0]}<br>
                             <strong>Time:</strong> ${dateTime[1]}<br>
                             <strong>Description:</strong> ${observation.description || ''}
-                            <a href="../read/read.html" class="btn btn-success rounded-pill" id="details-${observation.id}">Details</a>
+                            <a href="list/read/read.html" class="btn btn-success rounded-pill" id="details-${observation.id}">Details</a>
                         `;
                     
                         const marker = L.marker([observation.latitude, observation.longitude]);
