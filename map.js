@@ -7,6 +7,7 @@ const app = Vue.createApp({
             buttonText: 'Zoom In', // skal bruge ellers skifter den ikke navn
             animalFilter: null,
             loading: true, 
+            image: null
                 };
     },
 
@@ -39,20 +40,33 @@ const app = Vue.createApp({
 
                     observations.forEach(observation => {
                         const dateTime = observation.date.split('T');
-                        const markerContent = `
+                    
+                        const marker = L.marker([observation.latitude, observation.longitude]);
+                        
+                        marker.on('mouseover', async () => {
+                            await this.GetData("https://naturdanmark-api20231124193012.azurewebsites.net",observation.id);
+                            
+                            const markerContent = `                           
+                            <img src="${this.image}" style="max-width: 80%; margin-top: 10px;"> <br>                          
                             <strong>Animal Name:</strong> ${observation.animalName}<br>
                             <strong>Date:</strong> ${dateTime[0]}<br>
                             <strong>Time:</strong> ${dateTime[1]}<br>
                             <strong>Description:</strong> ${observation.description || ''}
-                            <a href="../read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(${observation.id})">Details</a>
-                        `;
-
-                        const marker = L.marker([observation.latitude, observation.longitude]);
-                        marker.bindPopup(markerContent);
+                            <a href="list/read/read.html" class="btn btn-success rounded-pill" id="details-${observation.id}">Details</a>`;
+                            
+                            
+                            marker.bindPopup(markerContent);
+                        });
+                        
+                        marker.on('popupopen', () => {                           
+                            const detailsLink = document.getElementById(`details-${observation.id}`);
+                            detailsLink.addEventListener('click', () => {
+                                this.getid(observation.id);
+                            });
+                        });
                         this.map.addLayer(marker);
                         this.markers.push(marker);
                     });
-
                     this.map.setView([56.2639, 9.5018], 7);
                 })
                 .catch(error => {
@@ -63,6 +77,27 @@ const app = Vue.createApp({
                 });
 
 
+      },
+
+      async GetData(url, id)
+      {
+          try
+          {
+              var response = await axios.get(url +"/Api/Observation/" + id)
+              this.observation = response.data
+              console.log(this.observation.id)
+              response = await axios.get(url +"/Api/Image?id=" + this.observation.id)
+              this.image = response.data.photo
+              console.log(response.data.photo)
+              return 0
+          }
+          catch(ex)
+          {
+            this.image = null;
+            console.log( ex.message)
+            return 1
+          }
+          
       },
     
 
