@@ -30,7 +30,6 @@
                         <thead class="thead">
                             <tr>
                                 <th>Animal</th>
-                                <th>User</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Details</th>
@@ -40,7 +39,6 @@
                             <tr>
                                 <td hidden>{{observation.id}}</td>
                                 <td>{{observation.animalName}}</td>
-                                <td>{{observation.userName}}</td>
                                 <td>{{observation.date.split('T')[0]}}</td>
                                 <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
                                 <td><a href="read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(observation.id)">Details</a></td>
