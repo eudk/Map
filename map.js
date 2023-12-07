@@ -57,7 +57,7 @@ const app = Vue.createApp({
                     
                         marker.on('popupopen', () => {
                         
-                            this.GetData(this.baseurl,observation.id)
+                            this.GetData("https://naturdanmark-api20231124193012.azurewebsites.net",observation.id)
                             const detailsLink = document.getElementById(`details-${observation.id}`);
                             detailsLink.addEventListener('click', () => {
                                 this.getid(observation.id);
