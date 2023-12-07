@@ -44,7 +44,7 @@ https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation
 
 _________________________________________________________________
 
-Database on Simply.com
+Database on Simply.com (Limited to 20GB est. 1000 observations with photos)
 _________________________________________________________________
 **Previews:**
 
