@@ -69,13 +69,13 @@ const app = Vue.createApp({
             const body = JSON.stringify(observationObject);
             xhr.onload = () => {
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 201) {
-                    console.log(JSON.parse(xhr.responseText));
-                    alert('Observation published!');
+                    console.log(JSON.parse(xhr.responseText).id);
+                    this.uploadImage(JSON.parse(xhr.responseText).id);
                 } else {
                     alert('Oh no! Something went wrong.');  
                     console.log(`Error: ${xhr.status}`);
                 }
-                window.location.href = '../map.html';
+                //window.location.href = '../map.html';
             };
             xhr.send(body);
         },
@@ -104,12 +104,13 @@ const app = Vue.createApp({
         observeDate.setMinutes(observeTime[1]);
         const observeDateTime = observeDate.toISOString().slice(0, 19); // Convert to MySQL DateTime format
 
-        const imageId = await this.uploadImage(event); // Pass event parameter
-        console.log("imageid:" + imageId);
+        
+        const observationObject = {id:0, userName:observerName, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude};
+        this.postObservation(observationObject);
+        
+        //const imageId = await this.uploadImage(event); // Pass event parameter
+        //console.log("imageid:" + imageId);
 
-        const observationObject = {id:0, userName:observerName, animalName:observedAnimal, date:observeDateTime, description:this.note, longitude:this.longitude, latitude:this.latitude, picture:imageId};
-                this.postObservation(observationObject);
-                
                 console.log("NEW POST MADE");
             } catch (error) {
                 console.error("Error submitting form:", error);
@@ -170,33 +171,20 @@ const app = Vue.createApp({
                 const image = event.target.files[0];
                 const dataString = await this.toBase64(image);
                 this.uploadedPhoto = dataString;
-    
-                // Call  uploadImage 
-                await this.uploadImage(event);
             } else {
                 console.error('no files selected. or issues');
             }
         },
         
-        async uploadImage(event) {
+        async uploadImage(id) {
             try {
                 const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/Image/`;
     
-                const image = event.target.files[0];
-    
-                const toBase64 = file => new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = reject;
-                });
-    
-                const dataString = await toBase64(image);
-    
                 // Log the base64-encoded image data
-                console.log('dataString:', dataString);
+                //console.log('dataString:', this.uploadedPhoto);
     
-                const imageObject = '{"oberservationID":0,"foto":"' + dataString + '}';
+                const imageObject = '{"id":0,"observationID":' + id + ',"photo":"' + this.uploadedPhoto + '"}';
+                console.log(imageObject)
     
                 const response = await axios.post(API_URL, imageObject, {
                     headers: {
