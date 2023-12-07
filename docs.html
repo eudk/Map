@@ -7,6 +7,19 @@
         h1 {
             font-weight: bold;
         }
+
+        pre {
+      background-color: #150d0d;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      white-space: pre-wrap; /* Preserve line breaks */
+      font-family: 'Courier New', monospace;
+    }
+
+    code {
+      color: #ded8d8;
+    }
     </style>
 </head>
 <body>
@@ -49,8 +62,52 @@
 
     <hr>
 
+    <ul>
     <h3>Previews</h3>
     <img src="../fotos/gitpreview/preview1.png" alt="preview1" style="height: 500px;">
     <img src="../fotos/gitpreview/preview2.png" alt="preview2" style="height: 500px;">
+
+    </ul>
+    <ul>
+    <h3>API use example</h3>
+    
+    <p>Example of a styled code block:</p>
+    <P>Metode til data fra dyreapi og vist som liste</P>
+    <pre>
+        <code>
+            // Metode til data fra dyreapi og vist som liste 
+            searchAnimal() {
+                const inputElement = document.getElementById('animalSearch');
+                const animalName = inputElement.value;
+    
+                if (animalName.trim() !== '') {
+                    const apiKey = 'CENSORED'; // API key ændr her hvis det er 
+                    const apiUrl = `https://api.api-ninjas.com/v1/animals?name=${animalName}`;
+                   
+                    axios.get(apiUrl, { headers: { 'X-Api-Key': apiKey } })
+                        .then(response => {
+                            const animals = response.data;
+    
+                            const animalSeenSelect = document.getElementById('animalSeen');
+                            animalSeenSelect.innerHTML = '';
+    
+                            animals.forEach(animal => {
+                                const option = document.createElement('option');
+                                option.value = animal.name;
+                                option.text = animal.name;
+                                animalSeenSelect.appendChild(option);
+                            });
+                         
+                        })
+                        .catch(error => {
+                            // måske noget til fejl kan ikke få den til at virke
+                        });
+                } else {
+                    alert('Enter the name of the animal');
+                }
+            },
+        </code>
+    </pre>
+</ul>
 </body>
 </html>
