@@ -97,15 +97,7 @@ html, body {
 .logo {
     position: fixed;
     top: 10px;
-    left: 10px;
+    right: 10px;
     width: 50px; 
     height: auto;
-}
-
-.invis {
-    visibility: hidden; 
-    color: transparent; 
-    color: rgba(x, x, x, 0);
-    color: hsla(x, x, x, 0);
-    opacity: 0; 
 }
