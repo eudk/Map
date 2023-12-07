@@ -23,13 +23,20 @@ const app = Vue.createApp({
             this.fetchObservations();
         },
 
+
+        getid(tempid){
+
+            sessionStorage.setItem('id', tempid)
+        },
+
+
         fetchObservations() {
             const API_URL = 'https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation';
         
             axios.get(API_URL)
                 .then(response => {
                     const observations = response.data;
-        
+
                     observations.forEach(observation => {
                         const dateTime = observation.date.split('T');
                         const markerContent = `
@@ -37,21 +44,22 @@ const app = Vue.createApp({
                             <strong>Date:</strong> ${dateTime[0]}<br>
                             <strong>Time:</strong> ${dateTime[1]}<br>
                             <strong>Description:</strong> ${observation.description || ''}
+                            <a href="../read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(${observation.id})">Details</a>
                         `;
-        
+
                         const marker = L.marker([observation.latitude, observation.longitude]);
                         marker.bindPopup(markerContent);
                         this.map.addLayer(marker);
                         this.markers.push(marker);
                     });
-        
+
                     this.map.setView([56.2639, 9.5018], 7);
                 })
                 .catch(error => {
                     console.error('Error fetching observations:', error);
                 })
                 .finally(() => {
-                    this.loading = false;  // loading stopper 
+                    this.loading = false;  // loading stops
                 });
 
 

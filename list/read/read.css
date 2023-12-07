@@ -20,6 +20,7 @@ html, body {
     margin-top: 20px;
     margin-bottom: 30px;
     overflow: hidden;
+    
 }
 
 #map-container {
@@ -97,11 +98,7 @@ html, body {
 .logo {
     position: fixed;
     top: 10px;
-    left: 10px;
+    right: 10px;
     width: 50px; 
     height: auto;
-}
-
-.invis {
-    opacity: 0;
 }
