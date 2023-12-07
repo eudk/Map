@@ -70,7 +70,12 @@ const app = Vue.createApp({
             xhr.onload = () => {
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 201) {
                     console.log(JSON.parse(xhr.responseText).id);
-                    this.uploadImage(JSON.parse(xhr.responseText).id);
+                    if(this.uploadImage != null){
+                        this.uploadImage(JSON.parse(xhr.responseText).id);
+                    } else {
+                        alert('Observation Registered');
+                        window.location.href = '../map.html';
+                    }
                 } else {
                     alert('Oh no! Something went wrong.');  
                     console.log(`Error: ${xhr.status}`);
@@ -193,6 +198,8 @@ const app = Vue.createApp({
                 });
     
                 console.log('image upload response > ', response);
+                alert("Observation Registered");
+                window.location.href = '../map.html';
     
             } catch (error) {
                 console.error('image upload error > ', error);
