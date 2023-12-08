@@ -5,7 +5,7 @@ const app = Vue.createApp({
             map: null,
             markers: [],
             buttonText: 'Zoom In', // skal bruge ellers skifter den ikke navn
-            animalFilter: null,
+            animalFilter: '',
             loading: true, 
             image: null
                 };
@@ -32,9 +32,13 @@ const app = Vue.createApp({
 
 
         fetchObservations() {
+            this.markers.forEach((marker) => {
+                this.map.removeLayer(marker);
+            });
+
             const API_URL = 'https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation';
         
-            axios.get(API_URL, { params: { 'amount': 50, 'sortMethod': 'datedesc' } }) //50 observations limit
+            axios.get(API_URL, { params: { 'amount': 50, 'sortMethod': 'datedesc', 'AnimalName': this.animalFilter} }) //50 observations limit
                 .then(response => {
                     const observations = response.data;
                         observations.forEach(observation => {
@@ -97,10 +101,10 @@ const app = Vue.createApp({
             return 1
           }
           
-      },
+        },
     
 
-        filterObservationsByAnimal(){
+        /*filterObservationsByAnimal(){
             this.markers.forEach((marker) => {
                 this.map.removeLayer(marker);
             });
@@ -108,7 +112,7 @@ const app = Vue.createApp({
             filterArray.forEach((marker) => {
                 this.map.addLayer(marker);
             });
-        },
+        },*/
 
         // Knap til at zoome ind og ud metode (:
         zoomCurrentLocation() {
