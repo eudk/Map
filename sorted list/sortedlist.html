@@ -20,69 +20,52 @@
         </a>
         
         <h2>See observations near you</h2>
-        <img src="../fotos/info.png" height="20" alt="Info" @click="showInfoPopup" id="infoIcon">
-        
-        <div v-show="isInfoPopupVisible" class="popup">
-            <span class="popup-content">Drag the map and hit "Choose on map," or hit "Use current location" to pick automatically</span>
-            <span class="popup-close" @click="closeInfoPopup">×</span>
-        </div>
-        <form @submit.prevent="submitForm" id="observationForm">
+ 
+        <div class="form-group">
+            <label for="location">Location: *</label>  
             
-            <div class="form-group">
-                <label for="location">Location: *</label>  
-                
-                <div class="form-check">
-                    <div id="map-container">
-                        <div id="small-map"></div> <!-- Add the map container -->
-                        <div id="coordinates">{{prettyCoordinates}}</div>
-                        <div id="cityName">{{cityName}}</div>
-                        <br>
-                        <div id="buttons-container">
-                            <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getCurrentLocation">Use current location</button>
-                            <button type="button" class="btn btn-primary" id="locationToggleMap" @click="getPinLocation">Choose on map</button>
-                        </div>
-                        <div class="form-group" id="controls">
-                            <input type="text" id="searchText" placeholder="Search" v-model="searchString" class="form-control">
-                            <input type="submit" class="btn btn-success rounded-pill" v-on:click="submit">
-                            <a>scroll for details</a>
-                        </div>
+            <div class="form-check">
+                <div id="map-container">
+                    <div id="small-map"></div> <!-- Add the map container -->
+                    <div id="coordinates">{{prettyCoordinates}}</div>
+                    <div id="cityName">{{cityName}}</div>
+                    <br>
+                    <div id="buttons-container">
+                        <button type="button" class="btn btn-primary" id="locationToggleAuto" @click="getCurrentLocation">Use current location</button>
+                        <button type="button" class="btn btn-primary" id="locationToggleMap" @click="getPinLocation">Choose on map</button>
                     </div>
-                    
-                    <div class="content">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>Animal</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody v-for="observation in observations" :key="observation.id">
-                                    <tr>
-                                        <td hidden>{{observation.id}}</td>
-                                        <td>{{observation.animalName}}</td>
-                                        <td>{{observation.date.split('T')[0]}}</td>
-                                        <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
-                                        <td><a href="read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(observation.id)">Details</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <div class="form-group" id="controls">
+                        <input type="text" id="searchText" placeholder="Animal to Search for" v-model="searchString" class="form-control">
+                        <input type="submit" class="btn btn-success rounded-pill" v-on:click="submitForm">
+                        <a>scroll for details</a>
                     </div>
                 </div>
                 
-               
-                
-                
-            <button type="submit" id="submitBtn" class="btn btn-primary custom-submit-btn">Submit</button>
-            
-            <button id="cancelBtn" class="btn btn-primary custom-cancel-btn" @click="cancelSubmission">Return</button>
-            
-            <br><label for="note">* must be filled out</label>
-        </form>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead">
+                                <tr>
+                                    <th>Animal</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody v-for="observation in observations" :key="observation.id">
+                                <tr>
+                                    <td hidden>{{observation.id}}</td>
+                                    <td>{{observation.animalName}}</td>
+                                    <td>{{observation.date.split('T')[0]}}</td>
+                                    <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
+                                    <td><a href="read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(observation.id)">Details</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script src="sortedlist.js"></script>
