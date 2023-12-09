@@ -48,17 +48,22 @@
                                 <tr>
                                     <th>Animal</th>
                                     <th>Date</th>
-                                    <th>Time</th>
+                                    <th>City</th>
                                     <th>Details</th>
                                 </tr>
                             </thead>
                             <tbody v-for="observation in observations" :key="observation.id">
                                 <tr>
-                                    <td hidden>{{observation.id}}</td>
-                                    <td>{{observation.animalName}}</td>
-                                    <td>{{observation.date.split('T')[0]}}</td>
-                                    <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
-                                    <td><a href="read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(observation.id)">Details</a></td>
+                                    <tbody v-for="observation in observations" :key="observation.id">
+                                        <tr>
+                                            <td hidden>{{observation.id}}</td>
+                                            <td>{{ observation.animalName }}</td>
+                                            <td>{{ observation.date.split('T')[0] }}</td>
+                                            <td>{{ observation.cityName }}</td>
+                                            <td><a href="read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(observation.id)">Details</a></td>
+                                        </tr>
+                                    </tbody>
+                                    
                                 </tr>
                             </tbody>
                         </table>

@@ -12,17 +12,37 @@ const app = Vue.createApp({
         };
     },
     methods: {  
-        
+        async getCityFromCoordinates(lat, lng) {
+            try {
+                const response = await axios.get(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`);
+                return response.data.city || response.data.locality || 'Unknown Location';
+            } catch (error) {
+                console.error('Error fetching city name:', error);
+                return 'Unknown Location';
+            }
+        },
         
         async submitForm() {
-            try
-            {
+            try {
                 if (this.prettyCoordinates == null) {
                     alert('Please choose a location on the map');
                     return;
                 }
-                const response= await axios.get("https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation?sortMethod=distance&longitude=" + this.longitude + "&latitude=" + this.latitude + "&amount=" + this.setamount + "&AnimalName=" + this.searchString)
-                this.observations=response.data
+                const params = new URLSearchParams({
+                    sortMethod: 'distance',
+                    longitude: this.longitude,
+                    latitude: this.latitude,
+                    amount: this.setamount,
+                    AnimalName: this.searchString
+                });
+        
+                // Fetch observations from  API
+                const response = await axios.get("https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation?" + params.toString());
+                this.observations = response.data;
+        
+                for (let observation of this.observations) {
+                    observation.cityName = await this.getCityFromCoordinates(observation.latitude, observation.longitude);
+                }
             } catch (error) {
                 console.error("Error submitting form:", error);
             }
