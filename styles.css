@@ -103,29 +103,8 @@ html, body {
     height: 60px;
 }
 
-.user {
-    position: fixed;
-    top: 64px;
-    right: 10px;
-    width: 50px; 
-    height: 50px;
-}
 
-.add {
-    position: fixed;
-    top: 116px;
-    right: 10px;
-    width: 50px; 
-    height: 50px;
-}
 
-.list {
-    position: fixed;
-    top: 164px;
-    right: 10px;
-    width: 50px; 
-    height: 50px;
-}
 
 /* #zoomin {
     background-color: blue;
@@ -159,3 +138,38 @@ html, body {
     color: rgb(0, 0, 0);
     font-size: 10px;
 }
+
+
+
+.logo {
+    position: fixed;
+    top: 4px;
+    right: 10px;
+    width: 55px; 
+    height: 60px;
+    z-index: 1001;
+}
+
+.icon-container {
+    position: fixed;
+    right: 10px;
+    text-align: center; 
+}
+
+.icon {
+    width: 50px; 
+    height: 50px;
+    display: block;
+    margin: 0 auto; 
+}
+
+.icon-label {
+    display: block; 
+    color: black; 
+    font-size: 14px; 
+    margin-top: 5px;
+}
+
+.icon-container:nth-child(1) { top: 64px; }
+.icon-container:nth-child(2) { top: 64px; }
+.icon-container:nth-child(3) { top: 214px; }

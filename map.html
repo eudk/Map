@@ -21,22 +21,31 @@
         </div>
         
         <div id="overlay">
-            <div class="header">
+            <div class="icon-container logo-container">
                 <a href="index.html">
                     <img src="fotos/logo.png" alt="Logo" class="logo">
                 </a>
+            </div>
 
-                <a href="index.html">
-                            <img src="fotos/user.png" alt="user" class="user">
-                        </a>
-
-                        <a href="/observation/observation.html">
-                            <img src="fotos/add.png" alt="add" class="add">
-                        </a>
-                        
-                        <a href="/list/list.html">
-                            <img src="fotos/list.png" alt="list" class="list">
-                            
+            <div class="icon-container">
+                <a href="userpage/userpage.html">
+                    <img src="fotos/user.png" alt="user" class="icon">
+                    <span class="icon-label">User</span>
+                </a>
+            
+                <a href="/observation/observation.html">
+                    <img src="fotos/add.png" alt="add" class="icon">
+                    <span class="icon-label">Add</span>
+                </a>
+            </div>
+            
+            <div class="icon-container">
+                <a href="/list/list.html">
+                    <img src="fotos/list.png" alt="list" class="icon">
+                    <span class="icon-label">List</span>
+                </a>
+            </div>
+                          <div>  
                         </a>
                         <a href="mailto:mail@mail.com" class="contact">contact</a> <!-- CONTACT LINK -->
                             <a href="/docs.html" class="docs">docs</a> <!-- DOCS LINK -->
@@ -45,7 +54,7 @@
                             
             <div class="form-group">
                 <input type="text" placeholder="Search" v-model="animalFilter">
-                <input type="submit" id="search" v-on:click="filterObservationsByAnimal">
+                <input type="submit" id="search" v-on:click="fetchObservations">
 <!--                                 <button id="zoomin"  v-on:click="zoomCurrentLocation">{{ buttonText }}</button> --->
             </div>
         </div>

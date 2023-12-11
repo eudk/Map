@@ -9,59 +9,57 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .container {
     width: 100%;
+    max-width: 650px;
     padding: 20px;
     border-radius: 15px;
-    background-color: rgba(220, 206, 206, 0.7);
-    backdrop-filter: blur(7px);
+    background-color: rgba(177, 176, 176, 0.7); 
+    backdrop-filter: blur(7px); 
     margin-top: 20px;
     margin-bottom: 30px;
-    overflow: hidden;
+    overflow: hidden; /* Hide  map overflow */
 }
 
-
-
-.header {
+#map-container {
+    flex: 1;
     width: 100%;
-    box-sizing: border-box;
 }
 
-.table {
+#map {
     width: 100%;
-    overflow-x: auto; /* scroll bar */
+    height: 100%;
 }
 
-td, th {
-    word-wrap: break-word;
-    max-width: 150px; 
-    white-space: normal;
+#small-map {
+    height: 400px;
+    max-width: 100%;
+    border-radius: 10px; 
 }
 
-
-/* Make the table responsive on mobile */
-@media screen and (max-width: 768px) {
-    #app {
-        align-items: stretch;
-    }
-
-    .container {
-        width: 100%;
-        border-radius: 0;
-        margin-top: 0; 
-        margin-bottom: 0; 
-        overflow: auto;
-    }
-
-    .logo {
-        width: 100%; 
-        max-width: 200px; 
-        height: auto;
-    }
+#buttons-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
+#overlay {
+    position: fixed;
+    display: block;
+    width: 20%;
+    height: 5%;
+    top: 10px;
+    left: 50px;
+    right: 80%;
+    bottom: 90%;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 10000000; 
+    cursor: pointer;
+}
+
 /* Mellem buttons afstand. */
 .btn {
     margin: 0 5px;
@@ -95,20 +93,17 @@ td, th {
     margin: 0 5px; 
 }
 
-#table,th,td
-{
-    border: 1px solid black;
-    border-collapse: collapse;
-    border-bottom: 1px solid #ddd
-}
-
-
 .logo {
     position: fixed;
     top: 4px;
-    left: 10px;
+    right: 10px;
     width: 55px; 
     height: 60px;
 }
 
 
+
+.uploaded-photo {
+    max-width: 10px;
+    margin-top: 10px;
+}

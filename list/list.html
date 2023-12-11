@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NaturDanmark</title>
-    <link rel="shortcut icon" type="image/x-icon" href="fotos/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../fotos/logo.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="list.css"> 
     <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
@@ -29,8 +29,7 @@
                     <table class="table table-bordered table-hover" id="animaltable">
                         <thead class="thead">
                             <tr>
-                                <th>AnimalName</th>
-                                <th>UserName</th>
+                                <th>Animal</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Details</th>
@@ -38,8 +37,8 @@
                         </thead>
                         <tbody v-for="observation in observations" :key="observation.id">
                             <tr>
+                                <td hidden>{{observation.id}}</td>
                                 <td>{{observation.animalName}}</td>
-                                <td>{{observation.userName}}</td>
                                 <td>{{observation.date.split('T')[0]}}</td>
                                 <td>{{observation.date.split('T')[1].slice(0,5)}}</td>
                                 <td><a href="read/read.html" class="btn btn-success rounded-pill" v-on:click="getid(observation.id)">Details</a></td>

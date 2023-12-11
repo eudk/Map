@@ -5,7 +5,7 @@ const app = Vue.createApp({
             map: null,
             markers: [],
             buttonText: 'Zoom In', // skal bruge ellers skifter den ikke navn
-            animalFilter: null,
+            animalFilter: '',
             loading: true, 
             image: null
                 };
@@ -32,12 +32,16 @@ const app = Vue.createApp({
 
 
         fetchObservations() {
+            this.markers.forEach((marker) => {
+                this.map.removeLayer(marker);
+            });
+
             const API_URL = 'https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation';
         
-            axios.get(API_URL)
+            axios.get(API_URL, { params: { 'amount': 50, 'sortMethod': 'datedesc', 'AnimalName': this.animalFilter} }) //50 observations limit
                 .then(response => {
-                    const observations = response.data.slice(0, 50); // 50 observations limit map
-                    observations.forEach(observation => {
+                    const observations = response.data;
+                        observations.forEach(observation => {
                         const dateTime = observation.date.split('T');
 
                         const marker = L.marker([observation.latitude, observation.longitude]);
@@ -46,7 +50,7 @@ const app = Vue.createApp({
                             await this.GetData("https://naturdanmark-api20231124193012.azurewebsites.net", observation.id);
 
                             const markerContent = `                           
-                            <img src="${this.image}" style="max-width: 80%; margin-top: 10px;"> <br>                          
+                            <img src="${this.image}" alt = "This observation has no photo" style="max-width: 80%; margin-top: 10px;"> <br>                          
                             <strong>Animal Name:</strong> ${observation.animalName}<br>
                             <strong>Date:</strong> ${dateTime[0]}<br>
                             <strong>Time:</strong> ${dateTime[1]}<br>
@@ -97,10 +101,10 @@ const app = Vue.createApp({
             return 1
           }
           
-      },
+        },
     
 
-        filterObservationsByAnimal(){
+        /*filterObservationsByAnimal(){
             this.markers.forEach((marker) => {
                 this.map.removeLayer(marker);
             });
@@ -108,7 +112,7 @@ const app = Vue.createApp({
             filterArray.forEach((marker) => {
                 this.map.addLayer(marker);
             });
-        },
+        },*/
 
         // Knap til at zoome ind og ud metode (:
         zoomCurrentLocation() {

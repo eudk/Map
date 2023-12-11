@@ -12,29 +12,39 @@
 </head>
 
 <body>
-    <div id="overlay">
-        <div id="app" class="container mt-5">
-            <div class="header d-flex justify-content-between align-items-center">
-                <a href="../../index.html">
-                    <img src="../../fotos/logo.png" alt="Logo" class="logo">
-                </a>
-            </div>
-
-            <h5 class="invis">_</h5>
-
-            <img v-if="image" :src="image" alt="Uploaded Photo" style="max-width: 80%; margin-top: 10px;">
-
-            {{observation.animalName}}<br>
-            Observeret af {{observation.userName}} på {{observation.date.split('T')[0]}}, kl. {{observation.date.split('T')[1].slice(0,5)}}<br>
-            {{observation.description}}<br>
-
-            <h1 class="invis">_</h1>
-
-            <div>
-                <a href="../list.html">Tilbage</a>
-            </div>
-
+    <div id="app" class="container mt-5">
+        <div class="header d-flex justify-content-between align-items-center">
+            <a href="../../index.html">
+                <img src="../../fotos/logo.png" alt="Logo" class="logo">
+            </a>
         </div>
+
+        <h5 class="invis">_</h5>
+
+        <img v-if="image" :src="image" alt="Uploaded Photo" style="max-width: 80%; margin-top: 10px;"> <br>
+        <h3>Animal Observed: {{observation.animalName}}</h3><br>
+        <h6>Observered by: {{observation.userName}}</h6><br>
+        <h6>Date: {{observation.date.split('T')[0]}}</h6><br>
+        <h6>Time: {{observation.date.split('T')[1].slice(0,5)}}</h6><br>
+        <h6>Description: {{observation.description}}</h6><br>
+        <h6>Location: {{ getLocation() }}</h6>
+        <h6>Coordinates: {{ getFormattedCoordinates() }}</h6> <br> <br> <br>
+
+        <h1 class="invis">_</h1>
+        <h1 class="invis">_</h1>
+
+        <div id="icondiv">
+            <a href="../list.html" id="listicon">
+                <img src="../../fotos/list.png" alt="Back to list">
+                <span>List</span>
+            </a>
+            <a href="../../index.html" id="mapicon">
+                <img src="../../fotos/map.png" alt="Back to map">
+                <span>Map</span>
+            </a>
+        </div>
+        
+
     </div>
     <script src="read.js"></script>
 </body>
