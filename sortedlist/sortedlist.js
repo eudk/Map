@@ -48,6 +48,11 @@ const app = Vue.createApp({
             }
         },
 
+        getid(tempid){ 
+
+            sessionStorage.setItem('id', tempid)
+        },
+
 
         // Metode til at vise kortet
         initializeMap() {
