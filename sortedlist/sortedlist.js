@@ -74,10 +74,44 @@ const app = Vue.createApp({
 
 
 
-        getCurrentLocation(){
-            //TODO
-        },
+     
+        async getCurrentLocation() {
+            try {
+                const apiUrl = 'https://naturdanmark-api20231124193012.azurewebsites.net/api/coordinates/1'; //device id 1
+                const response = await axios.get(apiUrl);
+    
+                if (response.status === 200 && response.data) {
+                    this.processLatestCoordinates(response.data);
+                } else {
+                    console.error('Failed to retrieve latest coordinates');
+                    alert('Unable to fetch current location.');
+                }
+            } catch (error) {
+                console.error('Error fetching current location:', error);
+                alert('Error occurred while fetching current location.');
+            }
         
+        },
+    
+        processLatestCoordinates(data) {
+            this.longitude = data.longitude;
+            this.latitude = data.latitude;
+            this.prettyCoordinates = this.convertGeographicCoordinateFormat(this.latitude, this.longitude);
+    
+            console.log(this.longitude, this.latitude);
+    
+            // Fetch city name using reverse geocoding API
+            const reverseGeocodeApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${this.latitude}&longitude=${this.longitude}&localityLanguage=en`;
+    
+            axios.get(reverseGeocodeApiUrl)
+                .then(response => {
+                    this.cityName = response.data.locality;
+                })
+                .catch(error => {
+                    console.error('Error fetching city name:', error);
+                });
+        },
+    
 
 
         getPinLocation() {
@@ -137,6 +171,7 @@ const app = Vue.createApp({
 
     mounted() {
         this.initialize();
+        this.getCurrentLocation();
         console.log('mounted');
     }
 });
