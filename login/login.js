@@ -5,25 +5,20 @@ const app = Vue.createApp({
         return {
             inputName: "",
             outputName: "",
-            checked: false
         };
     },
-
-    method: {
+    methods: {
         put() {
-            this.outputName = this.inputName.get("Login: " + "")
-            if (this.outputName == null){
+            this.outputName = this.inputName.get("") 
                 try {
                     if (this.outputName == "") throw "Name can't be empty"
                 }
                 catch(error) {
                     outputName.innerHTML = error
                 }
-            }
-        },
-
-        storename(){
-            sessionStorage.setItem('name', outputName)
+            },
+        storename() {
+            sessionStorage.setItem('name', this.outputName)
         }
     },
 

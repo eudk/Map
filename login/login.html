@@ -12,30 +12,29 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div id="app" class="wrapper" >
         <form action="">
-            <h1>Login</h1>
+            <h1>Add username</h1>
             <div class="input-box">
-                <input type="text" placeholder="Username"
+                <input type="text" placeholder="Username" v-model="outputName"
                 required>
             </div>
             <!-- <div class="input-box">
                 <input type="password"
                 placeholder="Password" required>
             </div> -->
-
-            
             <a href="../userpage/userpage.html" class="btn btn-success rounded-pill" v-on:click="storename()">Sign up</a>
-            <div>
+            <!-- <div>
                 <label><input type="checkbox"> Remember me
                 </label>
                 <a href="#" Forgot password?></a>
-            </div>
+            </div> -->
             <!-- <div class="register-link">
                 <p>Doesn't have an ancount? <a
                 href="#">Register</a></p>
             </div> -->
         </form>
     </div>
+    <script src="login.js"></script>
 </body>
 </html>

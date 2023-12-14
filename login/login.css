@@ -49,7 +49,7 @@ body {
     padding: 20px 45px 20px 20px;
 }
 
-.wrapper .remember-forgot {
+/* .wrapper .remember-forgot {
     display: flex;
     justify-content: space-between;
     font-size: 14.5px;
@@ -68,7 +68,7 @@ body {
 
 .remember-forgot a:hover {
     text-decoration: underline;
-}
+} */
 
 .wrapper .btn {
     width: 100%;
