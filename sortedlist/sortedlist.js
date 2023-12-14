@@ -74,7 +74,7 @@ const app = Vue.createApp({
 
 
 
-     
+     //method to get current location from api 
         async getCurrentLocation() {
             try {
                 const apiUrl = 'https://naturdanmark-api20231124193012.azurewebsites.net/api/coordinates/1'; //device id 1
@@ -92,7 +92,7 @@ const app = Vue.createApp({
             }
         
         },
-    
+    //method to process coordinates from api
         processLatestCoordinates(data) {
             this.longitude = data.longitude;
             this.latitude = data.latitude;
@@ -113,7 +113,7 @@ const app = Vue.createApp({
         },
     
 
-
+//method to get coordinates from map pin
         getPinLocation() {
             
             const rawLng = this.map.getCenter().lng;
@@ -143,7 +143,7 @@ const app = Vue.createApp({
             });
            
         },
-
+//nice looking coordinates method
         convertGeographicCoordinateFormat(lat, lng) {
             
             const absDegLat = Math.abs(lat);

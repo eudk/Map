@@ -56,7 +56,7 @@
                                 <tr>
                                     <tbody v-for="observation in observations" :key="observation.id">
                                         <tr>
-                                            <td hidden>{{observation.id}}</td>
+                                            <td hidden>{{observation.id}}</td> <!-- Hidden ID for tests -->
                                             <td>{{ observation.animalName }}</td>
                                             <td>{{ observation.date.split('T')[0] }}</td>
                                             <td>{{ observation.cityName }}</td>

@@ -9,7 +9,7 @@ const app = Vue.createApp({
             cityName: null,
             isInfoPopupVisible: false,
             uploadedPhoto: null,
-            Username: "Anomynous" 
+            Username: "Anomynous" //implemented later to take username from sessionstorage
         };
     },
     async created()
@@ -50,7 +50,7 @@ const app = Vue.createApp({
                 alert('Enter the name of the animal');
             }
         },
-
+// Metode til at validere filstørrelse af foto
         validateFile(event){
             const MB = 1024*1024;
             const maximumFileSize = 30;
@@ -65,7 +65,7 @@ const app = Vue.createApp({
 
 
 
-
+// Metode til at poste observation
         postObservation(observationObject){
             const API_URL = `https://naturdanmark-api20231124193012.azurewebsites.net/Api/Observation`
             const xhr = new XMLHttpRequest();
@@ -91,7 +91,7 @@ const app = Vue.createApp({
         },
         
         
-        
+        // Metode til at sende formular
         async submitForm(event) {
             try {
                 if (this.prettyCoordinates == null) {
@@ -127,7 +127,7 @@ const app = Vue.createApp({
             }
 },
 
-        
+        // Metode til at begrænse længden af beskrivelse
         handleDescriptionInput() {
             if (this.note.length > 1024) {
               alert('Description cannot exceed 1024 characters.');
@@ -171,7 +171,7 @@ const app = Vue.createApp({
      
             async getCurrentLocation() {
                 try {
-                    const apiUrl = 'https://naturdanmark-api20231124193012.azurewebsites.net/api/coordinates/1'; //device id 1
+                    const apiUrl = 'https://naturdanmark-api20231124193012.azurewebsites.net/api/coordinates/1'; //device id 1 technically data from pi 
                     const response = await axios.get(apiUrl);
         
                     if (response.status === 200 && response.data) {
@@ -186,8 +186,8 @@ const app = Vue.createApp({
                 }
             
             },
-        
-            processLatestCoordinates(data) {
+        // Metode til at hente koordinater fra API og vise dem på kortet
+            processLatestCoordinates(data) { 
                 this.longitude = data.longitude;
                 this.latitude = data.latitude;
                 this.prettyCoordinates = this.convertGeographicCoordinateFormat(this.latitude, this.longitude);
@@ -210,7 +210,7 @@ const app = Vue.createApp({
 
 
 
-
+// Metode til at uploade billede
         async handlePhotoUpload(event) {
             if (event && event.target && event.target.files && event.target.files.length > 0) {
                 const image = event.target.files[0];
@@ -248,6 +248,7 @@ const app = Vue.createApp({
             }
         },
     
+        // Convert image to base64-encoded string
         toBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();

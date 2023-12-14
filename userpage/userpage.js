@@ -16,7 +16,7 @@ const app = Vue.createApp({
         {
             console.log('mounted')
             try{
-                this.Username = await sessionStorage.getItem('name')
+                this.Username = await sessionStorage.getItem('name') //get username from sessionStorage
             }
             catch(ex)
             {

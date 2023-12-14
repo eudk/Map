@@ -99,3 +99,8 @@ body {
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+.logo{
+    height: 50px;
+   justify-content: center;
+}

@@ -14,7 +14,7 @@ const app = Vue.createApp({
 
     methods: {
         initializeMap() {
-            this.map = L.map('map').setView([56.2639, 9.5018], 7);
+            this.map = L.map('map').setView([56.2639, 9.5018], 7); //center of denmark position and 7 is zoom level
             const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -27,7 +27,7 @@ const app = Vue.createApp({
 
         getid(tempid){
 
-            sessionStorage.setItem('id', tempid)
+            sessionStorage.setItem('id', tempid) //set id in sessionStorage
         },
 
 
@@ -82,7 +82,7 @@ const app = Vue.createApp({
 
       },
 
-      async GetData(url, id)
+      async GetData(url, id) //get data from api 
       {
           try
           {
@@ -115,7 +115,8 @@ const app = Vue.createApp({
         },*/
 
         // Knap til at zoome ind og ud metode (:
-        zoomCurrentLocation() {
+        zoomCurrentLocation() //not used
+         {
             if (this.buttonText === 'Zoom In') {
                 this.buttonText = 'Center';
                 this.map.setView([56.2639, 9.5018], 13);

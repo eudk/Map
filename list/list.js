@@ -37,7 +37,7 @@ const app = Vue.createApp({
 
         getid(tempid){
 
-            sessionStorage.setItem('id', tempid)
+            sessionStorage.setItem('id', tempid) 
         }
     },
     mounted() {
