@@ -8,8 +8,13 @@ const app = Vue.createApp({
             note: null,
             cityName: null,
             isInfoPopupVisible: false,
-            uploadedPhoto: null 
+            uploadedPhoto: null,
+            Username: "Anomynous" 
         };
+    },
+    async created()
+    {
+        await this.mounteduser()
     },
     methods: {
 
@@ -337,6 +342,17 @@ const app = Vue.createApp({
             document.getElementById("date").setAttribute('max', date.toISOString().split('T')[0]);
             const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
             document.getElementById("date").setAttribute('min', sevenDaysAgo.toISOString().split('T')[0]);
+        },
+        async mounteduser() 
+        {
+            console.log('mounted')
+            try{
+                this.Username = await sessionStorage.getItem('name')
+            }
+            catch(ex)
+            {
+                alert(ex)
+            }
         }
         
 
