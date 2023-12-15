@@ -26,5 +26,5 @@ const app = Vue.createApp({
         console.log('mounted');
     }
 });
-
+ 
 app.mount("#app")
