@@ -15,7 +15,7 @@ const app = Vue.createApp({
 
         logout() {
             sessionStorage.removeItem('name'); 
-            this.Username = 'Anonymous'; 
+            this.Username = ''; 
         },
 
 
