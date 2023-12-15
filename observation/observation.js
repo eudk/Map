@@ -62,7 +62,7 @@ const app = Vue.createApp({
             };
         },
         
-
+     
 
 
 // Metode til at poste observation

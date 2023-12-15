@@ -12,6 +12,14 @@ const app = Vue.createApp({
     },
     methods:
     {
+
+        logout() {
+            sessionStorage.removeItem('name'); 
+            this.Username = 'Anonymous'; 
+        },
+
+
+
         async mounted() 
         {
             console.log('mounted')

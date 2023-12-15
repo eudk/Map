@@ -23,7 +23,7 @@
         <img src="../fotos/info.png" height="20" alt="Info" @click="showInfoPopup" id="infoIcon">
         
         <div v-show="isInfoPopupVisible" class="popup">
-            <span class="popup-content">Drag the map and hit "Choose on map," or hit "Use current location" to pick automatically</span>
+            <span class="popup-content">Drag the map and hit "Choose on map," or hit "Use current location" to pick automatically, if you are logged in with a Username and wish to logout or post an anonymous observation you can do so by navidating to the userpage</span>
             <span class="popup-close" @click="closeInfoPopup">×</span>
         </div>
         <form @submit.prevent="submitForm" id="observationForm">
@@ -32,6 +32,7 @@
                 <input type="text" class="form-control" id="name" disabled v-model="Username" placeholder="Anonymous">
                 <div class="form-group">
                     <label for="notRegistered">Not registered yet? <a href="../login/login.html">Click here</a></label>
+
                 </div>
             </div>
             
