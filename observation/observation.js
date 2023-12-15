@@ -99,8 +99,8 @@ const app = Vue.createApp({
                     return;
                 }
 
-                const observerName = document.getElementById('name').value;
-        const observedAnimal = document.getElementById('animalSeen').value;
+                const observerName = this.Username;
+                        const observedAnimal = document.getElementById('animalSeen').value;
 
         const observeDate = new Date(document.getElementById('date').value);
         const observeTime = document.getElementById('time').value.split(':');
@@ -344,18 +344,15 @@ const app = Vue.createApp({
             const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
             document.getElementById("date").setAttribute('min', sevenDaysAgo.toISOString().split('T')[0]);
         },
-        async mounteduser() 
-        {
-            console.log('mounted')
-            try{
-                this.Username = await sessionStorage.getItem('name')
+        async mounteduser() {
+            try {
+                const storedUsername = await sessionStorage.getItem('name');
+                this.Username = storedUsername || 'Anonymous';
+            } catch (ex) {
+                console.error(ex);
+                this.Username = 'Anonymous';
             }
-            catch(ex)
-            {
-                alert(ex)
-            }
-        }
-        
+        },
 
     
     },
